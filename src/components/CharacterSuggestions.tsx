@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
+import { Result } from "../modules/characters/domain/Result";
 
-const CharacterSuggestions = () => {
+interface CharacterSuggestionsProps {
+  suggestions: Result;
+}
+
+const CharacterSuggestions = (props: CharacterSuggestionsProps) => {
+  const { suggestions } = props;
+
   return (
-      <>
-      esta seran las sugerancias de busqueda
-      </>
+    <div>
+      <p>{suggestions.name}</p>
+    </div>
   );
 };
+
 export default CharacterSuggestions;

@@ -1,7 +1,7 @@
 export interface CharacterRepository {
-  getCharacters(): Promise<{ characters: Character[]; pageInfo: PageInfo }>;
+  //getCharacters(): Promise<{object}>;
 }
-
+/*
 export interface Character {
   id: number;
   name: string;
@@ -28,4 +28,9 @@ export interface PageInfo {
   pages: number;
   next: string | null;
   prev: string | null;
+}
+*/
+
+export type Character = {
+  
 }

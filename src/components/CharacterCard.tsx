@@ -1,15 +1,15 @@
 import React from 'react';
-import { Character } from '../domain/characterRepository';
+import { Result } from '../modules/characters/domain/Result';
 
 type CharacterCardProps = {
-  character: Character;
+  character: Result;
   onClick: () => void;
 }
 
 const CharacterCard = ({ character, onClick }: CharacterCardProps) => {
   return (
     <div onClick={onClick}>
-      <img src={character.image} alt={character.name} />
+      <img src={character.image} alt={character.image} />
       <h2>{character.name}</h2>
     </div>
   );

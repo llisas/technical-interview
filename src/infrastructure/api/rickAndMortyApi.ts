@@ -1,8 +1,8 @@
-import {
+/*import {
   CharacterRepository,
   Character,
 } from "../../domain/characterRepository";
-import { PageInfo } from "../../domain/characterRepository";
+//import { PageInfo } from "../../domain/characterRepository";
 
 export class RickAndMortyApi implements CharacterRepository {
   async getCharacters(): Promise<{
@@ -26,3 +26,4 @@ export class RickAndMortyApi implements CharacterRepository {
     }
   }
 }
+*/
