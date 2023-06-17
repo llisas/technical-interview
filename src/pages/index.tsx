@@ -21,7 +21,7 @@ export default function Home() {
 
   return (
     <>
-      <SearchBar />
+      <SearchBar/>
       <CharacterList characters={characters} />
     </>
   );
