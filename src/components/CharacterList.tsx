@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import CharacterModal from "./CharacterModal";
 import CharacterCard from "@/components/CharacterCard";
 import { Result } from "../modules/characters/domain/result";
@@ -9,10 +8,10 @@ interface CharacterList {
 
 export default function CharacterList({ characters }: CharacterList) {
   const { isModalOpen, selectedCharacter, handleOpenModal, handleCloseModal } =
-  characterListUseCase({ characters });
+    characterListUseCase({ characters });
 
   return (
-    <div>
+    <>
       {selectedCharacter && (
         <CharacterModal
           character={selectedCharacter}
@@ -27,6 +26,6 @@ export default function CharacterList({ characters }: CharacterList) {
           onClick={() => handleOpenModal(character)}
         />
       ))}
-    </div>
+    </>
   );
 }
