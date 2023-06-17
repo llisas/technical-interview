@@ -9,7 +9,7 @@ interface SearchBarProps {
   onSearch: (query: string) => void;
 }
 
-const SearchBar = ({ onSearch }: SearchBarProps) => {
+const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [characters, setCharacters] = useState<Result[]>([]);
 
@@ -17,11 +17,15 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
   const getSuggestionsFn = getSuggestions(characterRepository);
 
   const handleChange = async (event: React.FormEvent<HTMLInputElement>) => {
+    if (event.currentTarget.value){
     setSearchTerm(event.currentTarget.value);
     const characterResults: Character = await getSuggestionsFn(
       event.currentTarget.value
     );
-    setCharacters(characterResults.results);
+    setCharacters(characterResults.results);}else{
+      setSearchTerm('');
+      setCharacters([]);
+    }
   };
 
   return (
@@ -33,7 +37,7 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
         onChange={handleChange}
       />
       <br />
-      {characters.map((character) => (
+      {characters?.map((character) => (
         <CharacterSuggestions key={character.id} suggestions={character} />
       ))}
     </>

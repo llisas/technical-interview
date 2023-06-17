@@ -1,18 +1,28 @@
-import React, { useState } from 'react';
-import CharacterList from '../components/CharacterList';
+import React, { useState, useEffect } from "react";
+import CharacterList from "../components/CharacterList";
 import SearchBar from "../components/SearchBar";
+import { Character } from "../modules/characters/domain/Character";
+import { Result } from "../modules/characters/domain/Result";
+import { createApiCharacterRepository } from "../modules/characters/infra/ApiCharacterRepository";
+import { getAllCharacters } from "src/modules/characters/application/get/getAllCharacters";
 
 export default function Home() {
-  const [searchQuery, setSearchQuery] = useState("");
+  const characterRepository = createApiCharacterRepository();
+  const getAllCharactersFn = getAllCharacters(characterRepository);
+  const [characters, setCharacters] = useState<Result[]>([]);
 
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
-  };
-  
+  useEffect(() => {
+    const fetchCharacters = async () => {
+      const characterResults: Character = await getAllCharactersFn();
+      setCharacters(characterResults.results);
+    };
+    fetchCharacters();
+  }, []);
+
   return (
     <>
-     <SearchBar onSearch={handleSearch} />
-     <CharacterList></CharacterList>
+      <SearchBar />
+      <CharacterList characters={characters} />
     </>
   );
 }

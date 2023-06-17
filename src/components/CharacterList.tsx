@@ -1,28 +1,15 @@
-import { useEffect, useState } from "react";
-import { createApiCharacterRepository } from "../modules/characters/infra/ApiCharacterRepository";
-import { getAllCharacters } from "src/modules/characters/application/get/getAllCharacters";
-import { Character } from "../modules/characters/domain/Character";
-import { Result } from "../modules/characters/domain/Result";
-
+import { useState, useEffect } from "react";
 import CharacterModal from "./CharacterModal";
 import CharacterCard from "@/components/CharacterCard";
+import { Result } from "../modules/characters/domain/Result";
 
-export default function Home() {
-  const characterRepository = createApiCharacterRepository();
-  const getAllCharactersFn = getAllCharacters(characterRepository);
+interface CharacterListProps {
+  characters: Result[];
+}
+
+export default function CharacterList({ characters }: CharacterListProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [characters, setCharacters] = useState<Result[]>([]);
-  const [selectedCharacter, setSelectedCharacter] = useState<Result | null>(
-    null
-  );
-
-  useEffect(() => {
-    const fetchCharacters = async () => {
-      const characterResults: Character = await getAllCharactersFn();
-      setCharacters(characterResults.results);
-    };
-    fetchCharacters();
-  }, []);
+  const [selectedCharacter, setSelectedCharacter] = useState<Result | null>(null);
 
   const handleOpenModal = (character: Result) => {
     setSelectedCharacter(character);
