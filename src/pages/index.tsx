@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import CharacterList from "../components/CharacterList";
 import SearchBar from "../components/SearchBar";
-import { Character } from "../modules/characters/domain/Character";
-import { Result } from "../modules/characters/domain/Result";
+import { Character } from "../modules/characters/domain/character";
+import { Result } from "../modules/characters/domain/result";
 import { createApiCharacterRepository } from "../modules/characters/infra/ApiCharacterRepository";
 import { getAllCharacters } from "src/modules/characters/application/get/getAllCharacters";
 
