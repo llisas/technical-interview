@@ -1,5 +1,5 @@
-import { Info } from "./Info";
-import { Result } from "./Result";
+import { Info } from "./info";
+import { Result } from "./result";
 
 export interface Character {
   info: Info;

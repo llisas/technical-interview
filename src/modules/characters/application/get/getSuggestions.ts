@@ -1,5 +1,5 @@
-import { Character } from '../../domain/Character';
-import { CharacterRepository } from '../../domain/CharacterRepository';
+import { Character } from '../../domain/character';
+import { CharacterRepository } from '../../domain/characterRepository';
 
 export function getSuggestions(characterRepository: CharacterRepository) {
 	return async (characterName:string): Promise<Character> => {

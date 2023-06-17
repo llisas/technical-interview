@@ -1,4 +1,4 @@
-import { Origin } from "./Origin";
+import { Origin } from "./origin";
 export interface Result {
     id: number;
     name: string;

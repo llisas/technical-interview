@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import CharacterModal from "./CharacterModal";
 import CharacterCard from "@/components/CharacterCard";
-import { Result } from "../modules/characters/domain/Result";
-import { characterListUseCase } from "../modules/characters/application/useCase/CharacterListUseCase";
+import { Result } from "../modules/characters/domain/result";
+import { characterListUseCase } from "../modules/characters/application/useCase/characterListUseCase";
 interface CharacterList {
   characters: Result[];
 }

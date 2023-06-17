@@ -1,4 +1,4 @@
-import { Character } from "./Character";
+import { Character } from "./character";
 
 export interface CharacterRepository{
     getAll : () => Promise<Character>;

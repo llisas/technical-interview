@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { createApiCharacterRepository } from "../../../../modules/characters/infra/ApiCharacterRepository";
-import { getSuggestions } from "../../../../modules/characters/application/get/getSuggestions";
-import { Character } from "../../../../modules/characters/domain/Character";
-import { Result } from "../../../../modules/characters/domain/Result";
+import { createApiCharacterRepository } from "../../infra/ApiCharacterRepository";
+import { getSuggestions } from "../get/getSuggestions";
+import { Character } from "../../domain/character";
+import { Result } from "../../domain/result";
 
 
 export function searchBarUseCase() {

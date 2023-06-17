@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Result } from "../../domain/Result";
+import { Result } from "../../domain/result";
 
 interface CharacterListUseCaseProps {
   characters: Result[];

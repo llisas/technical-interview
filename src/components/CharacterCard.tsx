@@ -1,5 +1,5 @@
 import React from 'react';
-import { Result } from '../modules/characters/domain/Result';
+import { Result } from '../modules/characters/domain/result';
 
 type CharacterCardProps = {
   character: Result;
