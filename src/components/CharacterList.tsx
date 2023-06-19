@@ -1,15 +1,24 @@
-import CharacterModal from "./CharacterModal";
-import CharacterCard from "@/components/CharacterCard";
+import React from "react";
 import { Result } from "../modules/characters/domain/result";
-import { characterListUseCase } from "../modules/characters/application/useCase/characterListUseCase";
-interface CharacterList {
+import CharacterCard from "@/components/CharacterCard";
+import CharacterModal from "./CharacterModal";
+import { CharacterListContainer } from "../styles/CharacterList.styles";
+
+interface CharacterListProps {
   characters: Result[];
+  isModalOpen: boolean;
+  selectedCharacter: Result | null;
+  handleOpenModal: (character: Result) => void;
+  handleCloseModal: () => void;
 }
 
-export default function CharacterList({ characters }: CharacterList) {
-  const { isModalOpen, selectedCharacter, handleOpenModal, handleCloseModal } =
-    characterListUseCase({ characters });
-
+const CharacterList = ({
+  characters,
+  isModalOpen,
+  selectedCharacter,
+  handleOpenModal,
+  handleCloseModal,
+}: CharacterListProps) => {
   return (
     <>
       {selectedCharacter && (
@@ -19,13 +28,17 @@ export default function CharacterList({ characters }: CharacterList) {
           onClose={handleCloseModal}
         />
       )}
-      {characters.map((character) => (
-        <CharacterCard
-          key={character.id}
-          character={character}
-          onClick={() => handleOpenModal(character)}
-        />
-      ))}
+      <CharacterListContainer>
+        {characters.map((character) => (
+          <CharacterCard
+            key={character.id}
+            character={character}
+            onClick={() => handleOpenModal(character)}
+          />
+        ))}
+      </CharacterListContainer>
     </>
   );
-}
+};
+
+export default CharacterList;

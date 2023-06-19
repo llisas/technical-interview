@@ -1,40 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import CharacterList from "../components/CharacterList";
 import SearchBar from "../components/SearchBar";
-import Paginator from "../components/Paginator"
-import { Character } from "../modules/characters/domain/character";
-import { Result } from "../modules/characters/domain/result";
-import { createApiCharacterRepository } from "../modules/characters/infra/ApiCharacterRepository";
-import { getAllCharacters } from "src/modules/characters/application/get/getAllCharacters";
+import Paginator from "../components/Paginator";
+import { homeUseCase } from "../modules/characters/application/useCase/homeUseCase";
 
-export default function Home() {
-  const characterRepository = createApiCharacterRepository();
-  const getAllCharactersFn = getAllCharacters(characterRepository);
-  const [characters, setCharacters] = useState<Result[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const fetchCharacters = async () => {
-    const characterResults: Character = await getAllCharactersFn();
-    setCharacters(characterResults.results);
-    
-  };
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
-
-  useEffect(() => {
-    fetchCharacters();
-  }, []);
+const Home = () => {
+  const {
+    isModalOpen,
+    selectedCharacter,
+    handleOpenModal,
+    handleCloseModal,
+    characters,
+    currentPage,
+    totalPages,
+    onPageChange,
+  } = homeUseCase();
 
   return (
     <>
-      <SearchBar/>
-      <CharacterList characters={characters} />
+      <SearchBar />
+      <CharacterList
+        characters={characters}
+        isModalOpen={isModalOpen}
+        selectedCharacter={selectedCharacter}
+        handleOpenModal={handleOpenModal}
+        handleCloseModal={handleCloseModal}
+      />
       <Paginator
-        currentPage={1}
-        totalPages={12}
-        onPageChange={handlePageChange}
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={onPageChange}
       />
     </>
   );
-}
+};
+
+export default Home;

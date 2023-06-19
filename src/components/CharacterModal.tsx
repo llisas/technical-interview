@@ -1,25 +1,42 @@
-import ReactModal from "react-modal";
-import React, { ReactNode } from 'react';
 import { Result } from "../modules/characters/domain/result";
-
-type CharacterModalProps =  {
+import {
+  StyledModal,
+  CloseButton,
+  ContentContainer,
+  ImageContainer,
+  InformationContainer,
+} from "../styles/CharacterModal.styles";
+type CharacterModalProps = {
   character: Result;
   isOpen: boolean;
   onClose: () => void;
-}
+};
 
-const CharacterModal = ({ character, isOpen, onClose }: CharacterModalProps) => {
+const CharacterModal = ({
+  character,
+  isOpen,
+  onClose,
+}: CharacterModalProps) => {
   return (
-    <ReactModal isOpen={isOpen} onRequestClose={onClose}>
-      <button onClick={onClose}>Cerrar</button>
-      <p></p>
-      <img src={character.image} alt={character.name} />
-      <h2>{character.name}</h2>
-      <h2>{character.status}</h2>
-      <h2>{character.species}</h2>
-      <h2>{character.type}</h2>
-      <h2>{character.origin.name}</h2>
-    </ReactModal>
+    <StyledModal
+      isOpen={isOpen}
+      onRequestClose={onClose}
+      overlayClassName="modal-overlay"
+    >
+      <CloseButton onClick={onClose}>X</CloseButton>
+      <ContentContainer>
+        <ImageContainer>
+          <img src={character.image} alt={character.name} />
+        </ImageContainer>
+        <InformationContainer>
+          <h2>{character.name}</h2>
+          <p>Status: {character.status}</p>
+          <p>Species: {character.species}</p>
+          <p>Type: {character.type}</p>
+          <p>Origin: {character.origin.name}</p>
+        </InformationContainer>
+      </ContentContainer>
+    </StyledModal>
   );
 };
 

@@ -4,7 +4,6 @@ import { getSuggestions } from "../get/getSuggestions";
 import { Character } from "../../domain/character";
 import { Result } from "../../domain/result";
 
-
 export function searchBarUseCase() {
   const [searchTerm, setSearchTerm] = useState("");
   const [characters, setCharacters] = useState<Result[]>([]);

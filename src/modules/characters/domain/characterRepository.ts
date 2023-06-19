@@ -1,6 +1,6 @@
 import { Character } from "./character";
 
 export interface CharacterRepository{
-    getAll : () => Promise<Character>;
     getSuggestions : (characterName : string) => Promise<Character>;
+    getPage: (page : number) => Promise<Character>;
 }

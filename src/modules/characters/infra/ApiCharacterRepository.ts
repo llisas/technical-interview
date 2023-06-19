@@ -3,20 +3,9 @@ import { CharacterRepository } from "../domain/characterRepository";
 
 export function createApiCharacterRepository(): CharacterRepository {
   return {
-    getAll,
     getSuggestions,
+    getPage,
   };
-}
-
-async function getAll(): Promise<Character> {
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL_BASE}/character`
-    );
-    return await response.json();
-  } catch (error) {
-    throw new Error("Error getting characters");
-  }
 }
 
 async function getSuggestions(characterName: string): Promise<Character> {
@@ -27,5 +16,16 @@ async function getSuggestions(characterName: string): Promise<Character> {
     return await response.json();
   } catch (error) {
     throw new Error("Error getting suggestions");
+  }
+}
+
+async function getPage(page: number): Promise<Character> {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL_BASE}/character/?page=${page}`
+    );
+    return await response.json();
+  } catch (error) {
+    throw new Error("Error getting page");
   }
 }
