@@ -1,18 +1,26 @@
-import React from 'react';
-import { Character } from '../domain/characterRepository';
+import React from "react";
+import { Result } from "../modules/characters/domain/result";
+import {
+  CharacterCardContainer,
+  CharacterImageWrapper,
+  CharacterImage,
+  CharacterName,
+} from "../styles/CharacterCard.styles";
 
 type CharacterCardProps = {
-  character: Character;
+  character: Result;
   onClick: () => void;
-}
+};
 
 const CharacterCard = ({ character, onClick }: CharacterCardProps) => {
   return (
-    <div onClick={onClick}>
-      <img src={character.image} alt={character.name} />
-      <h2>{character.name}</h2>
-    </div>
+    <CharacterCardContainer onClick={onClick}>
+      <CharacterImageWrapper>
+        <CharacterImage src={character.image} alt={character.image} />
+      </CharacterImageWrapper>
+      <CharacterName>{character.name}</CharacterName>
+      <span>{character.species}</span>
+    </CharacterCardContainer>
   );
 };
-
 export default CharacterCard;
