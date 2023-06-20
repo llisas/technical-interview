@@ -1,4 +1,5 @@
 import { Origin } from "./origin";
+import { Location } from "./location";
 export interface Result {
     id: number;
     name: string;

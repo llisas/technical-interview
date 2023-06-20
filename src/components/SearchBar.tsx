@@ -1,7 +1,6 @@
 import React from "react";
 import CharacterSuggestions from "./CharacterSuggestions";
 import { searchBarUseCase } from "../modules/characters/application/useCase/searchBarUseCase";
-import styled from "@emotion/styled";
 import {
   SearchBarContainer,
   SearchContainer,
