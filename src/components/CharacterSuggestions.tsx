@@ -16,7 +16,7 @@ const CharacterSuggestions = ({ suggestions }: CharacterSuggestionsProps) => {
 
   return (
     <Container>
-      <List>
+      <List data-testid="suggestion-list">
         {suggestions?.map((character) => (
           <ListItem key={character.id}>{character.name}</ListItem>
         ))}

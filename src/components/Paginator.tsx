@@ -18,13 +18,19 @@ const Paginator = ({
 
   return (
     <Container>
-      <Button onClick={handlePreviousPage} disabled={isFirstPage}>
+      <Button
+        data-testid="previous-button"
+        onClick={handlePreviousPage}
+        disabled={isFirstPage}
+      >
         &lt;
       </Button>
       <PageInfo>
         Page {currentPage} of {totalPages}
       </PageInfo>
-      <Button onClick={handleNextPage}>&gt;</Button>
+      <Button data-testid="next-button" onClick={handleNextPage}>
+        &gt;
+      </Button>
     </Container>
   );
 };
