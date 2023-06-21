@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Result } from "../../domain/result";
 import { getCharacter } from "../get/getCharacter"
-import { createApiCharacterRepository } from "../../infra/ApiCharacterRepository";
+import { createApiCharacterRepository } from "../../../../modules/characters/infra/ApiCharacterRepository";
 import { Character } from "../../domain/character";
 
 export function homeUseCase() {

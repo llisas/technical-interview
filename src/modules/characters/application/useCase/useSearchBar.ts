@@ -1,47 +1,43 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { createApiCharacterRepository } from "../../infra/ApiCharacterRepository";
 import { getSuggestions } from "../get/getSuggestions";
 import { Character } from "../../domain/character";
 import { Result } from "../../domain/result";
 
-export function searchBarUseCase() {
+export function useSearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [characters, setCharacters] = useState<Result[]>([]);//rename setSuggestions
+  const [suggestions, setSuggestions] = useState<Character>();
   const characterRepository = createApiCharacterRepository();
   const getSuggestionsFn = getSuggestions(characterRepository);
+  const timerRef = useRef<NodeJS.Timeout>();
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     const inputValue = event.currentTarget.value;
     setSearchTerm(inputValue);
+    clearTimeout(timerRef.current);
   };
 
-  useEffect(() => { //move fetchSuggestions out from useEffect
-                    //take a look Ivans link  
-                    //delayTimer should be inferida  
-                    //logic inside the timer callback 
-
-    let delayTimer: ReturnType<typeof setTimeout>;
-    const fetchSuggestions = async () => {
-      if (searchTerm) {
-        const characterResults: Character = await getSuggestionsFn(searchTerm);
-        setCharacters(characterResults.results);
-        clearTimeout(delayTimer);
-      }
-    };
-    if (searchTerm.trim() !== "") {
-      delayTimer = setTimeout(fetchSuggestions, 400);
-    } else {
-      setCharacters([]);
+  const fetchSuggestions = async () => {
+    if (searchTerm) {
+      const characterResults: Character = await getSuggestionsFn(searchTerm);
+      setSuggestions(characterResults);
     }
+  };
+ 
+  useEffect(() => {
+    timerRef.current = setTimeout(() => {
+      fetchSuggestions();
+    }, 400);
 
     return () => {
-      clearTimeout(delayTimer);
+      clearTimeout(timerRef.current);
     };
   }, [searchTerm]);
+  
 
   return {
     searchTerm,
-    characters,
+    suggestions,
     handleChange,
   };
 }

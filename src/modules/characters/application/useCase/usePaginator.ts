@@ -6,7 +6,7 @@ interface PaginatorUseCaseProps {
   onPageChange: (page: number) => void;
 }
 
-export function paginatorUseCase({
+export function usePaginator({
   currentPage,
   totalPages,
   onPageChange,

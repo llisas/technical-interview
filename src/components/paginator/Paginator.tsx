@@ -1,5 +1,5 @@
 import React from "react";
-import { paginatorUseCase } from "../../modules/characters/application/useCase/usePaginator";
+import { usePaginator } from "../../modules/characters/application/useCase/usePaginator";
 import { Container, Button, PageInfo } from "./Paginator.styles";
 
 interface PaginatorProps {
@@ -14,7 +14,7 @@ const Paginator = ({
   onPageChange,
 }: PaginatorProps) => {
   const { isFirstPage, isLastPage, handlePreviousPage, handleNextPage } =
-    paginatorUseCase({ currentPage, totalPages, onPageChange });
+    usePaginator({ currentPage, totalPages, onPageChange });
 
   return (
     <Container>

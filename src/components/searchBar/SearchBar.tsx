@@ -1,6 +1,5 @@
 import React from "react";
-import CharacterSuggestions from "../characterSuggestions/CharacterSuggestions";
-import { searchBarUseCase } from "../../modules/characters/application/useCase/useSearchBar";
+import { useSearchBar } from "../../modules/characters/application/useCase/useSearchBar";
 import {
   SearchBarContainer,
   SearchContainer,
@@ -8,8 +7,8 @@ import {
 } from "./SearchBar.styles";
 
 const SearchBar = () => {
-  const { searchTerm, characters, handleChange } = searchBarUseCase();
-
+  const { searchTerm, suggestions, handleChange } = useSearchBar();
+  console.log("AAAAAAAAA" , suggestions)
   return (
     <SearchBarContainer>
       <SearchContainer>
@@ -20,7 +19,6 @@ const SearchBar = () => {
           onChange={handleChange}
         />
       </SearchContainer>
-      <CharacterSuggestions suggestions={characters} />
     </SearchBarContainer>
   );
 };
