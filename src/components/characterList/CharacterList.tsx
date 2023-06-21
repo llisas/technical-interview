@@ -1,8 +1,8 @@
 import React from "react";
-import { Result } from "../modules/characters/domain/result";
-import CharacterCard from "@/components/CharacterCard";
-import CharacterModal from "./CharacterModal";
-import { CharacterListContainer } from "../styles/CharacterList.styles";
+import { Result } from "../../modules/characters/domain/result";
+import CharacterCard from "../charaterCard/CharacterCard";
+import CharacterModal from "../characterModal/CharacterModal";
+import { CharacterListContainer } from "./CharacterList.styles";
 
 interface CharacterListProps {
   characters: Result[];

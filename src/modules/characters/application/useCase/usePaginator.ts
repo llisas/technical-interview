@@ -11,8 +11,8 @@ export function paginatorUseCase({
   totalPages,
   onPageChange,
 }: PaginatorUseCaseProps) {
-  const [isFirstPage, setIsFirstPage] = useState(currentPage === 1);
-  const [isLastPage, setIsLastPage] = useState(currentPage === totalPages);
+  const [isFirstPage, setIsFirstPage] = useState(true);
+  const [isLastPage, setIsLastPage] = useState(false);
 
   const handlePreviousPage = () => {
     if (currentPage > 1) {

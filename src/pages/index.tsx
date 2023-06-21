@@ -1,8 +1,8 @@
 import React from "react";
-import CharacterList from "../components/CharacterList";
-import SearchBar from "../components/SearchBar";
-import Paginator from "../components/Paginator";
-import { homeUseCase } from "../modules/characters/application/useCase/homeUseCase";
+import CharacterList from "../components/characterList/CharacterList";
+import SearchBar from "../components/searchBar/SearchBar";
+import Paginator from "../components/paginator/Paginator";
+import { homeUseCase } from "../modules/characters/application/useCase/useHomeUse";
 
 const Home = () => {
   const {

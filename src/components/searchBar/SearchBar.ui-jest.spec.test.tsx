@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import SearchBar from "@/components/SearchBar";
+import SearchBar from "@/components/searchBar/SearchBar";
 
 describe("SearchBar", () => {
   it("renders without errors", () => {

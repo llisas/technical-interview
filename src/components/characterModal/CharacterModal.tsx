@@ -1,11 +1,11 @@
-import { Result } from "../modules/characters/domain/result";
+import { Result } from "../../modules/characters/domain/result";
 import {
   StyledModal,
   CloseButton,
   ContentContainer,
   ImageContainer,
   InformationContainer,
-} from "../styles/CharacterModal.styles";
+} from "./CharacterModal.styles";
 type CharacterModalProps = {
   character: Result;
   isOpen: boolean;

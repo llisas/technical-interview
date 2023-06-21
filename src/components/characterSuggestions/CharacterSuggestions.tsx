@@ -1,10 +1,10 @@
 import React from "react";
-import { Result } from "../modules/characters/domain/result";
+import { Result } from "../../modules/characters/domain/result";
 import {
   Container,
   List,
   ListItem,
-} from "../styles/CharacterSuggestions.styles";
+} from "./CharacterSuggestions.styles";
 interface CharacterSuggestionsProps {
   suggestions: Result[];
 }

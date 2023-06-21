@@ -4,7 +4,7 @@ import { CharacterRepository } from "../domain/characterRepository";
 export function createApiCharacterRepository(): CharacterRepository {
   return {
     getSuggestions,
-    getPage,
+    getCharacter,
   };
 }
 
@@ -19,7 +19,7 @@ async function getSuggestions(characterName: string): Promise<Character> {
   }
 }
 
-async function getPage(page: number): Promise<Character> {
+async function getCharacter(page: number): Promise<Character> {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL_BASE}/character/?page=${page}`

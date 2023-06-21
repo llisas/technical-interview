@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { Result } from "../../domain/result";
-import { getPage } from "../../../characters/application/get/getPage"
-import { createApiCharacterRepository } from "../../../../modules/characters/infra/ApiCharacterRepository";
+import { getCharacter } from "../get/getCharacter"
+import { createApiCharacterRepository } from "../../infra/ApiCharacterRepository";
 import { Character } from "../../domain/character";
 
 export function homeUseCase() {
   const characterRepository = createApiCharacterRepository();
-  const getPageResults = getPage(characterRepository);
+  const getPageResults = getCharacter(characterRepository);
 
   const [characters, setCharacters] = useState<Result[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);

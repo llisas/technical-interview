@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import CharacterSuggestions from "@/components/CharacterSuggestions";
+import CharacterSuggestions from "@/components/characterSuggestions/CharacterSuggestions";
 import { Result } from "src/modules/characters/domain/result";
 
 const mockSuggestions: Result[] = [

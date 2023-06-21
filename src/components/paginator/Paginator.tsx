@@ -1,6 +1,6 @@
 import React from "react";
-import { paginatorUseCase } from "../modules/characters/application/useCase/paginatorUseCase";
-import { Container, Button, PageInfo } from "../styles/Paginator.styles";
+import { paginatorUseCase } from "../../modules/characters/application/useCase/usePaginator";
+import { Container, Button, PageInfo } from "./Paginator.styles";
 
 interface PaginatorProps {
   currentPage: number;
@@ -28,7 +28,11 @@ const Paginator = ({
       <PageInfo>
         Page {currentPage} of {totalPages}
       </PageInfo>
-      <Button data-testid="next-button" onClick={handleNextPage}>
+      <Button
+        data-testid="next-button"
+        onClick={handleNextPage}
+        disabled={isLastPage}
+      >
         &gt;
       </Button>
     </Container>

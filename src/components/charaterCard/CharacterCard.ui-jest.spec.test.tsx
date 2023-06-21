@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, fireEvent } from "@testing-library/react";
-import CharacterCard from "@/components/CharacterCard";
+import CharacterCard from "./CharacterCard";
 import { Result } from "src/modules/characters/domain/result";
 import { Location } from "src/modules/characters/domain/location";
 
@@ -29,7 +29,7 @@ const characterDataMock: Result = {
 describe("CharacterCard", () => {
   it("Render name correctly ", () => {
     const { getByText } = render(
-      <CharacterCard character={characterDataMock} onClick={mockOnClick} />
+      <CharacterCard character={characterDataMock} onClick={mockOnClick} />//what click does? remove elements not used like onclick
     );
     expect(getByText(characterDataMock.name)).toBeInTheDocument();
   });

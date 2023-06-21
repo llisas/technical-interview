@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import CharacterList from "@/components/CharacterList";
+import CharacterList from "@/components/characterList/CharacterList";
 
 const mockCharacter = {
   id: 1,

@@ -1,11 +1,11 @@
 import React from "react";
-import { Result } from "../modules/characters/domain/result";
+import { Result } from "../../modules/characters/domain/result";
 import {
   CharacterCardContainer,
   CharacterImageWrapper,
   CharacterImage,
   CharacterName,
-} from "../styles/CharacterCard.styles";
+} from "./CharacterCard.styles";
 
 type CharacterCardProps = {
   character: Result;
