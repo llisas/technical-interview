@@ -2,12 +2,11 @@ import { useState, useEffect } from "react";
 import { Result } from "../../domain/result";
 import { getCharacter } from "../get/getCharacter";
 import { getSuggestions } from "../get/getSuggestions";
-import {getCharactersByUrl} from "../get/getCharactersByUrl"
+import { getCharactersByUrl } from "../get/getCharactersByUrl";
 import { createApiCharacterRepository } from "../../infra/ApiCharacterRepository";
 import { Character } from "../../domain/character";
 
 const useHome = () => {
-  
   const characterRepository = createApiCharacterRepository();
   const getSearchSuggestions = getSuggestions(characterRepository);
   const getSuggestionsByUrl = getCharactersByUrl(characterRepository);
@@ -15,16 +14,20 @@ const useHome = () => {
 
   const [characters, setCharacters] = useState<Result[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedCharacter, setSelectedCharacter] = useState<Result | null>(null);
+  const [selectedCharacter, setSelectedCharacter] = useState<Result | null>(
+    null
+  );
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState<Result[]>([]);
   const [searchTotalPages, setSearchTotalPages] = useState(0);
   const [searchCurrentPage, setSearchCurrentPage] = useState(1);
-  const [searchNextUrlPage, setSearchNextUrlPage] = useState<string | null>('');
-  const [searchPreviouseUrlPage, setSearchPrevoiuseUrlPage] = useState<string | null>('');
+  const [searchNextUrlPage, setSearchNextUrlPage] = useState<string | null>("");
+  const [searchPreviouseUrlPage, setSearchPrevoiuseUrlPage] = useState<
+    string | null
+  >("");
 
   useEffect(() => {
     fetchCharacters();
@@ -35,26 +38,35 @@ const useHome = () => {
   }, [searchTerm]);
 
   const fetchCharacters = async () => {
-    const characterResults: Character = await getPageResults(currentPage);
-    setCharacters(characterResults.results);
-    setTotalPages(characterResults.info.pages);
+    try {
+      const characterResults: Character = await getPageResults(currentPage);
+      setCharacters(characterResults.results);
+      setTotalPages(characterResults.info.pages);
+    } catch (e) {}
   };
 
   const fetchSuggestionsByUrl = async (url: string) => {
-    const response: Character = await getSuggestionsByUrl(url); 
-    setSearchResults(response.results);
-    setSearchTotalPages(response.info.pages);
-    setSearchNextUrlPage(response.info.next);
-    setSearchPrevoiuseUrlPage(response.info.prev);
+    try {
+      const response: Character = await getSuggestionsByUrl(url);
+      setSearchResults(response.results);
+      setSearchTotalPages(response.info.pages);
+      setSearchNextUrlPage(response.info.next);
+      setSearchPrevoiuseUrlPage(response.info.prev);
+    } catch (e) {}
   };
 
   const handleSearch = async () => {
-    const response = await getSearchSuggestions(searchTerm)
-    setSearchResults(response.results);
-    setSearchTotalPages(response.info.pages);
-    setSearchNextUrlPage(response.info.next);
-    setSearchPrevoiuseUrlPage(response.info.prev);
-    setSearchCurrentPage(1); 
+    try {
+      const response = await getSearchSuggestions(searchTerm);
+      setSearchResults(response.results);
+      setSearchTotalPages(response.info.pages);
+      setSearchNextUrlPage(response.info.next);
+      setSearchPrevoiuseUrlPage(response.info.prev);
+      setSearchCurrentPage(1);
+    } catch (e) {
+      setSearchTotalPages(0);
+      setSearchCurrentPage(0);
+    }
   };
 
   const handleOpenModal = (character: Result) => {
@@ -66,15 +78,15 @@ const useHome = () => {
     setIsModalOpen(false);
   };
 
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
+  const handleSearchChange = (name: string) => {
+    setSearchTerm(name);
   };
 
-  const handlePageChange = (page: number, direction: 'next' | 'back') => {
+  const handlePageChange = (page: number, direction: "next" | "back") => {
     if (searchTerm) {
-      if (direction === 'next' && searchNextUrlPage) {
+      if (direction === "next" && searchNextUrlPage) {
         fetchSuggestionsByUrl(searchNextUrlPage);
-      } else if (direction === 'back' && searchPreviouseUrlPage) {
+      } else if (direction === "back" && searchPreviouseUrlPage) {
         fetchSuggestionsByUrl(searchPreviouseUrlPage);
       }
       setSearchCurrentPage(page);
@@ -98,7 +110,7 @@ const useHome = () => {
     handleSearchChange,
     handleOpenModal,
     handleCloseModal,
-    onPageChange: handlePageChange
+    onPageChange: handlePageChange,
   };
 };
 
