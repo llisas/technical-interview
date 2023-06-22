@@ -1,22 +1,21 @@
 import React from "react";
-import { useSearchBar } from "../../modules/characters/application/useCase/useSearchBar";
-import {
-  SearchBarContainer,
-  SearchContainer,
-  SearchInput,
-} from "./SearchBar.styles";
+import{SearchBarContainer,SearchContainer,SearchInput} from './SearchBar.styles'
+interface SearchBarProps {
+  searchTerm: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
-const SearchBar = () => {
-  const { searchTerm, suggestions, handleChange } = useSearchBar();
-  console.log("AAAAAAAAA" , suggestions)
+
+
+const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, onChange }) => {
   return (
     <SearchBarContainer>
       <SearchContainer>
         <SearchInput
           type="text"
-          placeholder="Search..."
           value={searchTerm}
-          onChange={handleChange}
+          onChange={onChange}
+          placeholder="Search characters..."
         />
       </SearchContainer>
     </SearchBarContainer>

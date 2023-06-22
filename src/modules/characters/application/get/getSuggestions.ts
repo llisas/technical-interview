@@ -4,6 +4,7 @@ import { CharacterRepository } from '../../domain/characterRepository';
 export function getSuggestions(characterRepository: CharacterRepository) {
 	return async (characterName:string): Promise<Character> => {
 		const response  = await characterRepository.getSuggestions(characterName);
+		console.log("SUGGESTIONS", response);
 		return response;
 	};
 }

@@ -1,39 +1,32 @@
 import { useState } from "react";
 
-interface PaginatorUseCaseProps {
-  currentPage: number;
+interface UsePaginatorProps {
   totalPages: number;
-  onPageChange: (page: number) => void;
+  onPageChange: (page: number, direction: "next" | "back") => void;
 }
 
-export function usePaginator({
-  currentPage,
-  totalPages,
-  onPageChange,
-}: PaginatorUseCaseProps) {
-  const [isFirstPage, setIsFirstPage] = useState(true);
-  const [isLastPage, setIsLastPage] = useState(false);
+const usePaginator = ({ totalPages, onPageChange }: UsePaginatorProps) => {
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const handlePreviousPage = () => {
+  const handlePreviousClick = () => {
     if (currentPage > 1) {
-      onPageChange(currentPage - 1);
-      setIsFirstPage(currentPage - 1 === 1);
-      setIsLastPage(false);
+      setCurrentPage((prevPage) => prevPage - 1);
+      onPageChange(currentPage - 1, "back");
     }
   };
 
-  const handleNextPage = () => {
+  const handleNextClick = () => {
     if (currentPage < totalPages) {
-      onPageChange(currentPage + 1);
-      setIsFirstPage(false);
-      setIsLastPage(currentPage + 1 === totalPages);
+      setCurrentPage((prevPage) => prevPage + 1);
+      onPageChange(currentPage + 1, "next");
     }
   };
 
   return {
-    isFirstPage,
-    isLastPage,
-    handlePreviousPage,
-    handleNextPage,
+    currentPage,
+    handlePreviousClick,
+    handleNextClick,
   };
-}
+};
+
+export default usePaginator;

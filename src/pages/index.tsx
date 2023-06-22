@@ -1,26 +1,25 @@
-import React, { useState } from "react";
 import CharacterList from "../components/characterList/CharacterList";
 import Paginator from "../components/paginator/Paginator";
-import { homeUseCase } from "../modules/characters/application/useCase/useHomeUse";
+import SearchBar from "@/components/searchBar/SearchBar";
+import useHome from "src/modules/characters/application/useCase/useHome";
 
 const Home = () => {
-
   const {
+    characters,
     isModalOpen,
     selectedCharacter,
-    handleOpenModal,
-    handleCloseModal,
-    characters,
     currentPage,
     totalPages,
+    searchTerm,
+    handleSearchChange,
+    handleOpenModal,
+    handleCloseModal,
     onPageChange,
-  } = homeUseCase();
+  } = useHome();
 
-
-  
   return (
     <>
-
+      <SearchBar searchTerm={searchTerm} onChange={handleSearchChange} />
       <CharacterList
         characters={characters}
         isModalOpen={isModalOpen}
@@ -28,16 +27,11 @@ const Home = () => {
         handleOpenModal={handleOpenModal}
         handleCloseModal={handleCloseModal}
       />
-
-
       <Paginator
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={onPageChange}
       />
-
-
-
     </>
   );
 };
