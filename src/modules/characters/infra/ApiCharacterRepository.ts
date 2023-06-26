@@ -5,6 +5,7 @@ export function createApiCharacterRepository(): CharacterRepository {
   return {
     getSuggestions,
     getCharacter,
+    getCharactersByUrl,
   };
 }
 
@@ -24,6 +25,17 @@ async function getCharacter(page: number): Promise<Character> {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL_BASE}/character/?page=${page}`
     );
+    return await response.json();
+  } catch (error) {
+    throw new Error("Error getting page");
+  }
+}
+
+
+
+async function getCharactersByUrl(url: string): Promise<Character> {
+  try {
+    const response = await fetch(url);
     return await response.json();
   } catch (error) {
     throw new Error("Error getting page");

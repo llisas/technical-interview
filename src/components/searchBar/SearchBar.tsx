@@ -1,28 +1,28 @@
 import React from "react";
-import CharacterSuggestions from "../characterSuggestions/CharacterSuggestions";
-import { searchBarUseCase } from "../../modules/characters/application/useCase/useSearchBar";
-import {
-  SearchBarContainer,
-  SearchContainer,
-  SearchInput,
-} from "./SearchBar.styles";
+import { SearchBarContainer, SearchContainer, SearchInput } from './SearchBar.styles';
+import useSearchBar from "../../modules/characters/application/useCase/useSearchBar";
 
-const SearchBar = () => {
-  const { searchTerm, characters, handleChange } = searchBarUseCase();
+interface SearchBarProps {
+  searchTerm: string;
+  onChange: (searchTerm: string) => void;
+}
+
+const SearchBar = ({ searchTerm, onChange }: SearchBarProps) => {
+  const { searchTerm: inputValue, handleInputChange } = useSearchBar(searchTerm, onChange);
 
   return (
     <SearchBarContainer>
       <SearchContainer>
         <SearchInput
           type="text"
-          placeholder="Search..."
-          value={searchTerm}
-          onChange={handleChange}
+          value={inputValue}
+          onChange={handleInputChange}
+          placeholder="Search characters..."
         />
       </SearchContainer>
-      <CharacterSuggestions suggestions={characters} />
     </SearchBarContainer>
   );
 };
 
 export default SearchBar;
+

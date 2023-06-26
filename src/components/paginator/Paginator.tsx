@@ -1,38 +1,32 @@
 import React from "react";
-import { paginatorUseCase } from "../../modules/characters/application/useCase/usePaginator";
 import { Container, Button, PageInfo } from "./Paginator.styles";
+import usePaginator from "../../modules/characters/application/useCase/usePaginator";
 
 interface PaginatorProps {
   currentPage: number;
   totalPages: number;
-  onPageChange: (page: number) => void;
+  onPageChange: (page: number, direction: "next" | "back") => void;
 }
 
-const Paginator = ({
+const Paginator: React.FunctionComponent<PaginatorProps> = ({
   currentPage,
   totalPages,
   onPageChange,
-}: PaginatorProps) => {
-  const { isFirstPage, isLastPage, handlePreviousPage, handleNextPage } =
-    paginatorUseCase({ currentPage, totalPages, onPageChange });
+}) => {
+  const { handlePreviousClick, handleNextClick } = usePaginator({
+    totalPages,
+    onPageChange,
+  });
 
   return (
     <Container>
-      <Button
-        data-testid="previous-button"
-        onClick={handlePreviousPage}
-        disabled={isFirstPage}
-      >
+      <Button disabled={currentPage === 1} onClick={handlePreviousClick}>
         &lt;
       </Button>
       <PageInfo>
-        Page {currentPage} of {totalPages}
+        {currentPage} of {totalPages}
       </PageInfo>
-      <Button
-        data-testid="next-button"
-        onClick={handleNextPage}
-        disabled={isLastPage}
-      >
+      <Button disabled={currentPage === totalPages} onClick={handleNextClick}>
         &gt;
       </Button>
     </Container>

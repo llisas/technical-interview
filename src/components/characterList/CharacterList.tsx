@@ -29,7 +29,7 @@ const CharacterList = ({
         />
       )}
       <CharacterListContainer>
-        {characters.map((character) => (
+        {characters?.map((character) => (
           <CharacterCard
             key={character.id}
             character={character}
