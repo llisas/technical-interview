@@ -14,6 +14,7 @@ const SearchBar = ({ searchTerm, onChange }: SearchBarProps) => {
     <SearchBarContainer>
       <SearchContainer>
         <SearchInput
+          id="search-input"
           type="text"
           value={inputValue}
           onChange={handleInputChange}

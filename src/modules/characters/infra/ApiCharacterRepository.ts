@@ -9,7 +9,7 @@ export function createApiCharacterRepository(): CharacterRepository {
   };
 }
 
-async function getSuggestions(characterName: string): Promise<Character> {
+export async function getSuggestions(characterName: string): Promise<Character> {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL_BASE}/character/?name=${characterName}`

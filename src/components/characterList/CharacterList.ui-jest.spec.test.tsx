@@ -1,54 +1,10 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import CharacterList from "@/components/characterList/CharacterList";
-
-const mockCharacter = {
-  id: 1,
-  name: "Rick",
-  status: "alive",
-  species: "human",
-  type: "",
-  gender: "male",
-  origin: {
-    name: "Earth",
-    url: "",
-  },
-  location: {
-    name: "Earth",
-    url: "",
-  },
-  image: "",
-  episode: [],
-  url: "",
-  created: "",
-};
-
-const mockCharacters = [
-  mockCharacter,
-  {
-    id: 2,
-    name: "Morty",
-    status: "alive",
-    species: "human",
-    type: "",
-    gender: "male",
-    origin: {
-      name: "Earth",
-      url: "",
-    },
-    location: {
-      name: "Earth",
-      url: "",
-    },
-    image: "",
-    episode: [],
-    url: "",
-    created: "",
-  },
-];
+import {mockCharacter, mockCharacters} from "./__mockData__/CharacterListMockData"
 
 describe("CharacterList", () => {
-  it("Renders CharacterCard components for each character", () => {
+  it("Correctly displays character information in each rendered CharacterCard component", () => {
     const handleOpenModal = jest.fn();
     const handleCloseModal = jest.fn();
 
@@ -67,7 +23,7 @@ describe("CharacterList", () => {
       });
   });
 
-  it("Clicking on a CharacterCard", () => {
+  it("Clicking on a CharacterCard should open the character details modal", () => {
     const handleOpenModal = jest.fn();
     const handleCloseModal = jest.fn();
 
@@ -83,7 +39,6 @@ describe("CharacterList", () => {
 
     const characterName = getByText(mockCharacter.name);
     fireEvent.click(characterName);
-
     expect(handleOpenModal).toHaveBeenCalledWith(mockCharacter);
   });
   
