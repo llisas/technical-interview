@@ -95,16 +95,14 @@ const useHome = () => {
     }
   };
 
-  const currentResults = searchTerm ? searchResults : characters;
-  const currentTotalPages = searchTerm ? searchTotalPages : totalPages;
-  const currentCurrentPage = searchTerm ? searchCurrentPage : currentPage;
+
 
   return {
-    characters: currentResults,
+    characters: searchTerm ? searchResults : characters,
     isModalOpen,
     selectedCharacter,
-    currentPage: currentCurrentPage,
-    totalPages: currentTotalPages,
+    currentPage: searchTerm ? searchCurrentPage : currentPage,
+    totalPages: searchTerm ? searchTotalPages : totalPages,
     searchTerm,
     setSearchTerm,
     handleSearchChange,
