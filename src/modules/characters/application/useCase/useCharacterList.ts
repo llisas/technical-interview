@@ -5,7 +5,7 @@ interface CharacterListUseCaseProps {
   characters: Result[];
 }
 
-export function characterListUseCase({ characters }: CharacterListUseCaseProps) {
+export function useCharacterList({ characters }: CharacterListUseCaseProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCharacter, setSelectedCharacter] = useState<Result | null>(null);
 

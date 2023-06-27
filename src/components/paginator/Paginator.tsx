@@ -20,13 +20,21 @@ const Paginator: React.FunctionComponent<PaginatorProps> = ({
 
   return (
     <Container>
-      <Button data-testid="previous-button" disabled={currentPage === 1} onClick={handlePreviousClick}>
+      <Button
+        data-testid="previous-button"
+        disabled={currentPage === 1}
+        onClick={handlePreviousClick}
+      >
         &lt;
       </Button>
       <PageInfo>
         {currentPage} of {totalPages}
       </PageInfo>
-      <Button data-testid="next-button" disabled={currentPage === totalPages} onClick={handleNextClick}>
+      <Button
+        data-testid="next-button"
+        disabled={currentPage === totalPages}
+        onClick={handleNextClick}
+      >
         &gt;
       </Button>
     </Container>
