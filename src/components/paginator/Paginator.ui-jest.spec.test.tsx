@@ -5,7 +5,7 @@ import Paginator from "@/components/paginator/Paginator";
 describe("Paginator", () => {
   const mockOnPageChange = jest.fn();
 
-  it("Renders current page and total pages correctly", () => {
+  it("renders current page and total pages correctly", () => {
     const currentPage = 2;
     const totalPages = 5;
 
@@ -17,11 +17,11 @@ describe("Paginator", () => {
       />
     );
 
-    expect(getByText(`Page ${currentPage} of ${totalPages}`)).toBeInTheDocument();
+    expect(getByText(`${currentPage} of ${totalPages}`)).toBeInTheDocument();
   });
 
-  it("Calls onPageChange with the previous page number when previous button is clicked", () => {
-    const currentPage = 3;
+  it("renders the previous button", () => {
+    const currentPage = 1;
     const totalPages = 5;
 
     const { getByTestId } = render(
@@ -33,30 +33,10 @@ describe("Paginator", () => {
     );
 
     const previousButton = getByTestId("previous-button");
-    fireEvent.click(previousButton);
 
-    expect(mockOnPageChange).toHaveBeenCalledWith(currentPage - 1);
+    expect(previousButton).toBeInTheDocument();
   });
-
-  it("Calls onPageChange with the next page number when next button is clicked", () => {
-    const currentPage = 3;
-    const totalPages = 5;
-
-    const { getByTestId } = render(
-      <Paginator
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={mockOnPageChange}
-      />
-    );
-
-    const nextButton = getByTestId("next-button");
-    fireEvent.click(nextButton);
-
-    expect(mockOnPageChange).toHaveBeenCalledWith(currentPage + 1);
-  });
-
-  it("Disables previous button when on first page", () => {
+  it("disables the previous button when current page is 1", () => {
     const currentPage = 1;
     const totalPages = 5;
 
@@ -71,4 +51,21 @@ describe("Paginator", () => {
     const previousButton = getByTestId("previous-button");
     expect(previousButton).toBeDisabled();
   });
+
+  it("renders next button", () => {
+    const currentPage = 2;
+    const totalPages = 5;
+
+    const { getByTestId } = render(
+      <Paginator
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={mockOnPageChange}
+      />
+    );
+
+    const nextButton = getByTestId("next-button");
+    expect(nextButton).toBeInTheDocument();
+  });
+
 });

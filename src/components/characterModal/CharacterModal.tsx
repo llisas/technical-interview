@@ -18,12 +18,13 @@ const CharacterModal = ({
   onClose,
 }: CharacterModalProps) => {
   return (
-    <StyledModal
+    <StyledModal  
+      data-testid="character-modal"
       isOpen={isOpen}
       onRequestClose={onClose}
       overlayClassName="modal-overlay"
     >
-      <CloseButton onClick={onClose}>X</CloseButton>
+      <CloseButton data-testid="close-button" onClick={onClose}>X</CloseButton>
       <ContentContainer>
         <ImageContainer>
           <img src={character.image} alt={character.name} />

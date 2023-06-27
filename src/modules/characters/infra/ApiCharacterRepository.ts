@@ -9,7 +9,7 @@ export function createApiCharacterRepository(): CharacterRepository {
   };
 }
 
-async function getSuggestions(characterName: string): Promise<Character> {
+export async function getSuggestions(characterName: string): Promise<Character> {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL_BASE}/character/?name=${characterName}`
@@ -20,24 +20,24 @@ async function getSuggestions(characterName: string): Promise<Character> {
   }
 }
 
-async function getCharacter(page: number): Promise<Character> {
+export async function getCharacter(page: number): Promise<Character> {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL_BASE}/character/?page=${page}`
     );
     return await response.json();
   } catch (error) {
-    throw new Error("Error getting page");
+    throw new Error("Error getting characters");
   }
 }
 
 
 
-async function getCharactersByUrl(url: string): Promise<Character> {
+export async function getCharactersByUrl(url: string): Promise<Character> {
   try {
     const response = await fetch(url);
     return await response.json();
   } catch (error) {
-    throw new Error("Error getting page");
+    throw new Error("Error getting characters by url");
   }
 }

@@ -95,8 +95,6 @@ const useHome = () => {
     }
   };
 
-
-
   return {
     characters: searchTerm ? searchResults : characters,
     isModalOpen,
