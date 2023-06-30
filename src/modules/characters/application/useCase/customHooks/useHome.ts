@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Result } from "../../../domain/result";
 
-
 const useHome = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
