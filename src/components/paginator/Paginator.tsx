@@ -1,29 +1,33 @@
 import React from "react";
 import { Container, Button, PageInfo } from "./Paginator.styles";
-import usePaginator from "../../modules/characters/application/useCase/usePaginator";
 
 interface PaginatorProps {
   currentPage: number;
   totalPages: number;
-  onPageChange: (page: number, direction: "next" | "back") => void;
+  onNextClick: () => void;
+  onPreviousClick: () => void;
 }
 
 const Paginator: React.FunctionComponent<PaginatorProps> = ({
   currentPage,
   totalPages,
-  onPageChange,
+  onNextClick,
+  onPreviousClick,
 }) => {
-  const { handlePreviousClick, handleNextClick } = usePaginator({
-    totalPages,
-    onPageChange,
-  });
+  const handleClickPrevious = () => {
+    onPreviousClick();
+  };
+
+  const handleClickNext = () => {
+   onNextClick();
+  };
 
   return (
     <Container>
       <Button
         data-testid="previous-button"
         disabled={currentPage === 1}
-        onClick={handlePreviousClick}
+        onClick={handleClickPrevious}
       >
         &lt;
       </Button>
@@ -33,7 +37,7 @@ const Paginator: React.FunctionComponent<PaginatorProps> = ({
       <Button
         data-testid="next-button"
         disabled={currentPage === totalPages}
-        onClick={handleNextClick}
+        onClick={handleClickNext}
       >
         &gt;
       </Button>

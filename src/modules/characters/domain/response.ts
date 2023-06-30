@@ -1,7 +1,7 @@
 import { Info } from "./info";
 import { Result } from "./result";
 
-export interface Character {
+export type Response = { 
   info: Info;
   results: Result[];
 }

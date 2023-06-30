@@ -5,7 +5,7 @@ import CharacterModal from "../characterModal/CharacterModal";
 import { CharacterListContainer } from "./CharacterList.styles";
 
 interface CharacterListProps {
-  characters: Result[];
+  characters: Result[] | null | undefined;
   isModalOpen: boolean;
   selectedCharacter: Result | null;
   handleOpenModal: (character: Result) => void;
@@ -28,15 +28,19 @@ const CharacterList = ({
           onClose={handleCloseModal}
         />
       )}
-      <CharacterListContainer>
-        {characters?.map((character) => (
-          <CharacterCard
-            key={character.id}
-            character={character}
-            onClick={() => handleOpenModal(character)}
-          />
-        ))}
-      </CharacterListContainer>
+      {characters && characters.length > 0 ? (
+        <CharacterListContainer>
+          {characters.map((character) => (
+            <CharacterCard
+              key={character.id}
+              character={character}
+              onClick={() => handleOpenModal(character)}
+            />
+          ))}
+        </CharacterListContainer>
+      ) : (
+        <div>There is nothing here</div>
+      )}
     </>
   );
 };

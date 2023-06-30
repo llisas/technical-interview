@@ -1,7 +1,7 @@
-import { Character } from "./character";
+import { Response } from "./response";
 
 export interface CharacterRepository{
-    getSuggestions : (characterName : string) => Promise<Character>;
-    getCharacter: (page : number) => Promise<Character>;
-    getCharactersByUrl : (url : string ) => Promise<Character>;
+    getSuggestions : (characterName : string) => Promise<Response>;
+    getCharacter: (page : number) => Promise<Response>;
+    getCharactersByUrl : (url : string ) => Promise<Response>;
 }

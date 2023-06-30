@@ -1,6 +1,6 @@
 import  {useCharacterList} from './useCharacterList';
 import { renderHook } from '@testing-library/react';
-import {characters } from './__mockData__/charactersMockData'
+import {characters } from '../__mockData__/charactersMockData'
 
 describe('characterListUseCase', () => {
     it('should initialize with correct initial state', () => {

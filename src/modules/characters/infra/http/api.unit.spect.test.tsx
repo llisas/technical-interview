@@ -1,7 +1,7 @@
-import { allSuggestionsMock} from "./__mockData__/ApiAllSuggestionMockData";
-import { allCharactersMock} from "./__mockData__/ApiAllCharactersMockData";
-import {allCharactersByUrl} from "./__mockData__/ApiAllCharactersByUrlMockData";
-import {getSuggestions, getCharacter, getCharactersByUrl } from "./ApiCharacterRepository";
+import { allSuggestionsMock } from "../__mockData__/ApiAllSuggestionMockData";
+import { allCharactersMock } from "../__mockData__/ApiAllCharactersMockData";
+import { allCharactersByUrl } from "../__mockData__/ApiAllCharactersByUrlMockData";
+import { getSuggestions, getCharacter, getCharactersByUrl } from "./api";
 
 describe("api testing", () => {
   it("Get suggestions obtein the correct data", () => {
@@ -36,7 +36,6 @@ describe("api testing", () => {
     expect(response).resolves.toEqual(allCharactersMock);
   });
 
-
   it("Get characters by url", () => {
     global.fetch = () =>
       Promise.resolve({
@@ -49,7 +48,9 @@ describe("api testing", () => {
         type: "basic",
         url: "",
       } as Response);
-    const response = getCharactersByUrl('https://rickandmortyapi.com/api/character?page=2');
+    const response = getCharactersByUrl(
+      "https://rickandmortyapi.com/api/character?page=2"
+    );
     expect(response).resolves.toEqual(allCharactersByUrl);
   });
 });

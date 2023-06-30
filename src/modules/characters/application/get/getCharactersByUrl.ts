@@ -1,4 +1,4 @@
-import { Character } from '../../domain/character';
+import { Character } from '../../domain/response';
 import { CharacterRepository } from '../../domain/characterRepository';
 
 export function getCharactersByUrl(characterRepository: CharacterRepository) {

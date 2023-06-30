@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { Result } from "../../domain/result";
+import { useState, useEffect } from "react";
+import { Result } from "../../../domain/result";
 
-interface CharacterListUseCaseProps {
-  characters: Result[];
-}
 
-export function useCharacterList({ characters }: CharacterListUseCaseProps) {
+const useHome = () => {
+  const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedCharacter, setSelectedCharacter] = useState<Result | null>(null);
+  const [selectedCharacter, setSelectedCharacter] = useState<Result | null>(
+    null
+  );
 
   const handleOpenModal = (character: Result) => {
     setSelectedCharacter(character);
@@ -21,8 +21,10 @@ export function useCharacterList({ characters }: CharacterListUseCaseProps) {
   return {
     isModalOpen,
     selectedCharacter,
+    searchTerm,
     handleOpenModal,
     handleCloseModal,
-    characters,
   };
-}
+};
+
+export default useHome;

@@ -1,6 +1,6 @@
 import React from "react";
 import { SearchBarContainer, SearchContainer, SearchInput } from './SearchBar.styles';
-import useSearchBar from "../../modules/characters/application/useCase/useSearchBar";
+import useSearchBar from "../../modules/characters/application/useCase/customHooks/useSearchBar";
 
 interface SearchBarProps {
   searchTerm: string;

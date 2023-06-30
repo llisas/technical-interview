@@ -1,6 +1,6 @@
 import { Origin } from "./origin";
 import { Location } from "./location";
-export interface Result {
+export type Result =  {
     id: number;
     name: string;
     status: string;
