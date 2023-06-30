@@ -23,6 +23,7 @@ const SearchBar = ({ searchTerm, onChange }: SearchBarProps) => {
       </SearchContainer>
     </SearchBarContainer>
   );
+  
 };
 
 export default SearchBar;

@@ -3,13 +3,10 @@ import CharacterList from "../components/characterList/CharacterList";
 import Paginator from "../components/paginator/Paginator";
 import SearchBar from "@/components/searchBar/SearchBar";
 import useHome from "src/modules/characters/application/useCase/customHooks/useHome";
-import {
-  getSuggestions,
-  getCharactersByUrl,
-} from "../modules/characters/infra/http/api";
-import { Response } from "src/modules/characters/domain/response";
 import { Result } from "src/modules/characters/domain/result";
 import PaginationAdapter from "../modules/characters/application/adapters/PaginationAdapter";
+import paginationService from "src/modules/characters/application/services/paginationService";
+import searchService from "src/modules/characters/application/services/searchService";
 
 const Home = () => {
   const [characters, setCharacters] = useState<Result[]>([]);
@@ -17,6 +14,7 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [nextPageUrl, setNextPageUrl] = useState<string | null>("");
   const [previousePageUrl, setPreviousePageUrl] = useState<string | null>("");
+  const [isSearching, setIsSearching] = useState(false);
 
   const paginationAdapter = new PaginationAdapter(
     setCharacters,
@@ -26,52 +24,46 @@ const Home = () => {
     setCurrentPage
   );
 
-  const {
-    isModalOpen,
-    selectedCharacter,
-    searchTerm,
-    handleOpenModal,
-    handleCloseModal,
-  } = useHome();
+  const { isModalOpen, selectedCharacter, handleOpenModal, handleCloseModal } =
+    useHome();
 
+  //BUSQUEDA PODRIA SER UN SEARCHADAPATER ??
   const handleSearchChange = async (event: string) => {
-    const response: Response = await getSuggestions(event);
-    paginationAdapter.updatePaginator(response.info);
-    paginationAdapter.setPaginationData(response);
+    searchService.handleSearchChange(event, setIsSearching, paginationAdapter);
   };
 
-  const handleNext = async () => {
+  //PAGINADOR
+  const handleNext =  () => {
     if (nextPageUrl) {
-      const response: Response = await getCharactersByUrl(nextPageUrl);
-      paginationAdapter.updateCurrentPage(currentPage + 1);
-      paginationAdapter.setPaginationData(response);
+      paginationService.handleNext(nextPageUrl, currentPage, paginationAdapter);
     }
   };
 
-  const handlePreviouse = async () => {
+  const handlePreviouse =  () => {
     if (previousePageUrl) {
-      const response: Response = await getCharactersByUrl(previousePageUrl);
-      paginationAdapter.updateCurrentPage(currentPage - 1);
-      paginationAdapter.setPaginationData(response);
+      paginationService.handlePrevious(previousePageUrl, currentPage, paginationAdapter);
     }
   };
 
   return (
     <>
-      <SearchBar searchTerm={searchTerm} onChange={handleSearchChange} />
+      <SearchBar searchTerm={""} onChange={handleSearchChange} />
       <CharacterList
         characters={characters}
         isModalOpen={isModalOpen}
         selectedCharacter={selectedCharacter}
         handleOpenModal={handleOpenModal}
         handleCloseModal={handleCloseModal}
+        isSearching={isSearching}
       />
-      <Paginator
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onNextClick={handleNext}
-        onPreviousClick={handlePreviouse}
-      />
+      {characters.length > 0 && (
+        <Paginator
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onNextClick={handleNext}
+          onPreviousClick={handlePreviouse}
+        />
+      )}
     </>
   );
 };

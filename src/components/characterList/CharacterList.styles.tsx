@@ -12,3 +12,19 @@ export const CharacterListContainer = styled.div`
     grid-template-columns: 1fr;
   }
 `;
+
+export const EmptyMessage = styled.div`
+  text-align: center;
+  font-size:35px;
+  margin-top:2em;
+  & img {
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+  }
+  & p {
+  
+    color: #888888;
+  }
+`;

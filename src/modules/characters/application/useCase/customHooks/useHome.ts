@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Result } from "../../../domain/result";
 
 const useHome = () => {
-  const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCharacter, setSelectedCharacter] = useState<Result | null>(
     null
@@ -20,7 +19,6 @@ const useHome = () => {
   return {
     isModalOpen,
     selectedCharacter,
-    searchTerm,
     handleOpenModal,
     handleCloseModal,
   };

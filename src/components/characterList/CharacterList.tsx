@@ -2,7 +2,7 @@ import React from "react";
 import { Result } from "../../modules/characters/domain/result";
 import CharacterCard from "../charaterCard/CharacterCard";
 import CharacterModal from "../characterModal/CharacterModal";
-import { CharacterListContainer } from "./CharacterList.styles";
+import { CharacterListContainer, EmptyMessage } from "./CharacterList.styles";
 
 interface CharacterListProps {
   characters: Result[] | null | undefined;
@@ -10,7 +10,9 @@ interface CharacterListProps {
   selectedCharacter: Result | null;
   handleOpenModal: (character: Result) => void;
   handleCloseModal: () => void;
+  isSearching: boolean;
 }
+
 
 const CharacterList = ({
   characters,
@@ -18,7 +20,10 @@ const CharacterList = ({
   selectedCharacter,
   handleOpenModal,
   handleCloseModal,
+  isSearching,
 }: CharacterListProps) => {
+
+
   return (
     <>
       {selectedCharacter && (
@@ -28,7 +33,17 @@ const CharacterList = ({
           onClose={handleCloseModal}
         />
       )}
-      {characters && characters.length > 0 ? (
+      {characters?.length === 0 && isSearching && (
+        <EmptyMessage>
+          <p>No characters found </p>
+          <img
+            src="https://decider.com/wp-content/uploads/2021/07/rick-and-morty-8.jpg?quality=75&strip=all"
+            alt="No characters"
+          />
+        
+        </EmptyMessage>
+      )}
+      { characters && characters.length > 0 && (
         <CharacterListContainer>
           {characters.map((character) => (
             <CharacterCard
@@ -38,8 +53,6 @@ const CharacterList = ({
             />
           ))}
         </CharacterListContainer>
-      ) : (
-        <div>There is nothing here</div>
       )}
     </>
   );
