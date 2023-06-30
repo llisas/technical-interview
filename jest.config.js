@@ -12,9 +12,10 @@ const customJestConfig = {
   testPathIgnorePatterns: ["/node_modules/", "/dist/"],
   moduleNameMapper: {
     // Handle module aliases (this will be automatically configured for you soon)
-    "^@/components/(.*)$": "<rootDir>/components/$1",
-
-    "^@/pages/(.*)$": "<rootDir>/pages/$1",
+  "^@/components/(.*)$": "<rootDir>/src/components/$1",
+  "^@/pages/(.*)$": "<rootDir>/src/pages/$1",
+  "^@/modules/(.*)$": "<rootDir>/src/modules/$1",
+  "^@/(.*)$": "<rootDir>/$1",
   },
   testEnvironment: "jest-environment-jsdom",
 };
