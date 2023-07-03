@@ -15,7 +15,7 @@ export const CharacterListContainer = styled.div`
 
 export const EmptyMessage = styled.div`
   text-align: center;
-  font-size:35px;
+  font-size:45px;
   margin-top:2em;
   & img {
     border-radius: 50%;

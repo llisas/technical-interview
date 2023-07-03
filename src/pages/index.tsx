@@ -27,12 +27,10 @@ const Home = () => {
   const { isModalOpen, selectedCharacter, handleOpenModal, handleCloseModal } =
     useHome();
 
-  //BUSQUEDA PODRIA SER UN SEARCHADAPATER ??
   const handleSearchChange = async (event: string) => {
     searchService.handleSearchChange(event, setIsSearching, paginationAdapter);
   };
 
-  //PAGINADOR
   const handleNext =  () => {
     if (nextPageUrl) {
       paginationService.handleNext(nextPageUrl, currentPage, paginationAdapter);
@@ -47,7 +45,7 @@ const Home = () => {
 
   return (
     <>
-      <SearchBar searchTerm={""} onChange={handleSearchChange} />
+      <SearchBar searchTerm={''} onChange={handleSearchChange} />
       <CharacterList
         characters={characters}
         isModalOpen={isModalOpen}
