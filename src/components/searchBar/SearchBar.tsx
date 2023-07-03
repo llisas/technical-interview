@@ -3,15 +3,14 @@ import { SearchBarContainer, SearchContainer, SearchInput } from './SearchBar.st
 import useSearchBar from "../../modules/characters/application/useCase/customHooks/useSearchBar";
 
 interface SearchBarProps {
-  searchTerm: string;
   onChange: (searchTerm: string) => void;
 }
 
-const SearchBar = ({ searchTerm, onChange }: SearchBarProps) => {
-  const { searchTerm: inputValue, handleInputChange } = useSearchBar(searchTerm, onChange);
+const SearchBar = ({ onChange }: SearchBarProps) => {
+  const { searchTerm: inputValue, handleInputChange } = useSearchBar(onChange);
 
   return (
-    <SearchBarContainer>
+    <SearchBarContainer data-testid="search-bar">
       <SearchContainer>
         <SearchInput
           id="search-input"
@@ -23,8 +22,6 @@ const SearchBar = ({ searchTerm, onChange }: SearchBarProps) => {
       </SearchContainer>
     </SearchBarContainer>
   );
-  
 };
 
 export default SearchBar;
-

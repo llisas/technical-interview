@@ -15,6 +15,7 @@ describe("CharacterList", () => {
         selectedCharacter={mockCharacter}
         handleOpenModal={handleOpenModal}
         handleCloseModal={handleCloseModal}
+        isSearching = {false}
       />
     );
     mockCharacters.forEach((character) => {
@@ -34,6 +35,7 @@ describe("CharacterList", () => {
         selectedCharacter={mockCharacter}
         handleOpenModal={handleOpenModal}
         handleCloseModal={handleCloseModal}
+        isSearching = {false}
       />
     );
 

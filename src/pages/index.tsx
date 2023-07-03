@@ -1,12 +1,12 @@
 import { useState } from "react";
 import CharacterList from "../components/characterList/CharacterList";
 import Paginator from "../components/paginator/Paginator";
-import SearchBar from "@/components/searchBar/SearchBar";
-import useHome from "src/modules/characters/application/useCase/customHooks/useHome";
-import { Result } from "src/modules/characters/domain/result";
+import SearchBar from "../components/searchBar/SearchBar";
+import useHome from "../modules/characters/application/useCase/customHooks/useHome";
+import { Result } from "../modules/characters/domain/result";
 import PaginationAdapter from "../modules/characters/application/adapters/PaginationAdapter";
-import paginationService from "src/modules/characters/application/services/paginationService";
-import searchService from "src/modules/characters/application/services/searchService";
+import paginationService from "../modules/characters/application/services/paginationService";
+import searchService from "../modules/characters/application/services/searchService";
 
 const Home = () => {
   const [characters, setCharacters] = useState<Result[]>([]);
@@ -31,21 +31,25 @@ const Home = () => {
     searchService.handleSearchChange(event, setIsSearching, paginationAdapter);
   };
 
-  const handleNext =  () => {
+  const handleNext = () => {
     if (nextPageUrl) {
       paginationService.handleNext(nextPageUrl, currentPage, paginationAdapter);
     }
   };
 
-  const handlePreviouse =  () => {
+  const handlePreviouse = () => {
     if (previousePageUrl) {
-      paginationService.handlePrevious(previousePageUrl, currentPage, paginationAdapter);
+      paginationService.handlePrevious(
+        previousePageUrl,
+        currentPage,
+        paginationAdapter
+      );
     }
   };
 
   return (
-    <>
-      <SearchBar searchTerm={''} onChange={handleSearchChange} />
+    <div data-testid="home-component">
+      <SearchBar onChange={handleSearchChange} />
       <CharacterList
         characters={characters}
         isModalOpen={isModalOpen}
@@ -62,7 +66,7 @@ const Home = () => {
           onPreviousClick={handlePreviouse}
         />
       )}
-    </>
+    </div>
   );
 };
 

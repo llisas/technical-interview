@@ -1,4 +1,4 @@
-import { Response } from "../../domain/response";
+import { Response } from "../../../models/response";
 
 export interface HttpClient {
     get(url: string): Promise<Response>;

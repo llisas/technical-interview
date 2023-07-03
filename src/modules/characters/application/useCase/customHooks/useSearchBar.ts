@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef} from "react";
 
-const useSearchBar = (initialSearchTerm: string, onChange: (searchTerm: string) => void) => {
-  const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
+const useSearchBar = ( onChange: (searchTerm: string) => void) => {
+  const [searchTerm, setSearchTerm] = useState('');
   const timerRef = useRef<NodeJS.Timeout>();
 
   useEffect(() => {

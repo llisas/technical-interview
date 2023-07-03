@@ -1,5 +1,5 @@
 import { getCharactersByUrl } from "../../infra/http/api";
-import { Response } from "../../domain/response";
+import { Response } from "../../../models/response";
 import PaginationAdapter from "../adapters/PaginationAdapter";
 
 const paginationService = {

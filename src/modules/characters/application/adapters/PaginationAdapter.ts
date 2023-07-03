@@ -1,4 +1,4 @@
-import { Response } from '../../domain/response'; 
+import { Response } from '../../../models/response'; 
 import { Result } from '../../domain/result';
 import { Info } from '../../domain/info';
 

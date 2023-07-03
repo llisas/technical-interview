@@ -1,5 +1,4 @@
-import { Response } from "../../domain/response";
-import { Result } from "../../domain/result";
+import { Response } from '../../../models/response'; 
 import { Info } from "../../domain/info";
 import PaginationAdapter from "./PaginationAdapter";
 import { responseMock } from "./__mockData__/responseMockData";

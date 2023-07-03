@@ -25,7 +25,7 @@ const CharacterList = ({
 
 
   return (
-    <>
+    <div  data-testid="character-list" >
       {selectedCharacter && (
         <CharacterModal
           character={selectedCharacter}
@@ -54,7 +54,7 @@ const CharacterList = ({
           ))}
         </CharacterListContainer>
       )}
-    </>
+    </div>
   );
 };
 

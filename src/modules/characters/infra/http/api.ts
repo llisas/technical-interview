@@ -1,5 +1,5 @@
 import { HttpClient,  FetchHttpClient} from "./httpClient";
-import { Response } from "../../domain/response";
+import { Response } from "../../../models/response";
 
 const httpClient: HttpClient = new FetchHttpClient();
 

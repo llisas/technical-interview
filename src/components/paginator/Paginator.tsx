@@ -23,7 +23,8 @@ const Paginator: React.FunctionComponent<PaginatorProps> = ({
   };
 
   return (
-    <Container>
+    <div data-testid="paginator">
+    <Container >
       <Button
         data-testid="previous-button"
         disabled={currentPage === 1}
@@ -42,6 +43,7 @@ const Paginator: React.FunctionComponent<PaginatorProps> = ({
         &gt;
       </Button>
     </Container>
+    </div>
   );
 };
 

@@ -7,7 +7,7 @@ describe("SearchBar", () => {
     const mockOnChange = jest.fn();
 
     const { getByPlaceholderText } = render(
-      <SearchBar searchTerm="" onChange={mockOnChange} />
+      <SearchBar  onChange={mockOnChange} />
     );
 
     const input = getByPlaceholderText(
@@ -21,7 +21,7 @@ describe("SearchBar", () => {
   it("updates the searchTerm when typing in the input", () => {
     const mockOnChange = jest.fn();
     const { getByPlaceholderText } = render(
-      <SearchBar searchTerm="" onChange={mockOnChange} />
+      <SearchBar  onChange={mockOnChange} />
     );
 
     const input = getByPlaceholderText(
