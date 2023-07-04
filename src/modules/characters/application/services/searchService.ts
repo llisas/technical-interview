@@ -2,7 +2,6 @@ import { getSuggestions } from "../../infra/http/api";
 import { Response } from "../../../models/response";
 import PaginationAdapter from "../adapters/PaginationAdapter";
 
-
 const searchService = {
   handleSearchChange: async (
     event: string,
