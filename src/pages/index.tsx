@@ -3,13 +3,13 @@ import CharacterList from "../components/characterList/CharacterList";
 import Paginator from "../components/paginator/Paginator";
 import SearchBar from "../components/searchBar/SearchBar";
 
-import { Result } from "../modules/characters/domain/result";
+import { Character } from "../modules/characters/domain/character";
 import PaginationAdapter from "../modules/characters/application/adapters/PaginationAdapter";
 import paginationService from "../modules/characters/application/services/paginationService";
 import searchService from "../modules/characters/application/services/searchService";
 
 const Home = () => {
-  const [characters, setCharacters] = useState<Result[]>([]);
+  const [characters, setCharacters] = useState<Character[]>([]);
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [nextPageUrl, setNextPageUrl] = useState<string | null>("");
@@ -69,7 +69,7 @@ export default Home;
 
 //DONE
 // useHome move to its compoment -> characterList
-
+// CHANGE NAME FROM RESULT TO CHARACTER
 
 
 

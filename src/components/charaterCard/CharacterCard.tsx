@@ -1,5 +1,5 @@
 import React from "react";
-import { Result } from "../../modules/characters/domain/result";
+import { Character } from "../../modules/characters/domain/character";
 import {
   CharacterCardContainer,
   CharacterImageWrapper,
@@ -8,7 +8,7 @@ import {
 } from "./CharacterCard.styles";
 
 type CharacterCardProps = {
-  character: Result;
+  character: Character;
   onClick: () => void;
 };
 

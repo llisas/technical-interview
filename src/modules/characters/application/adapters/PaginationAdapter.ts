@@ -1,5 +1,5 @@
 import { Response } from "../../../models/response";
-import { Result } from "../../domain/result";
+import { Character } from "../../domain/character";
 import { Info } from "../../../models/info";
 
 interface IPaginationAdapter {
@@ -9,14 +9,14 @@ interface IPaginationAdapter {
 }
 
 class PaginationAdapter implements IPaginationAdapter {
-  private setCharacters: (characters: Result[]) => void;
+  private setCharacters: (characters: Character[]) => void;
   private setNextPageUrl: (nextPageUrl: string | null) => void;
   private setPreviousPageUrl: (previousPageUrl: string | null) => void;
   private setTotalPages: (totalPages: number) => void;
   private setCurrentPage: (currentPage: number) => void;
 
   constructor(
-    setCharacters: (characters: Result[]) => void,
+    setCharacters: (characters: Character[]) => void,
     setNextPageUrl: (nextPageUrl: string | null) => void,
     setPreviousPageUrl: (previousPageUrl: string | null) => void,
     setTotalPages: (totalPages: number) => void,

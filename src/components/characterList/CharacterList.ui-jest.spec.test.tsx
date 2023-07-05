@@ -11,10 +11,6 @@ describe("CharacterList", () => {
     const { getByText} = render(
       <CharacterList
         characters={mockCharacters}
-        isModalOpen={false}
-        selectedCharacter={mockCharacter}
-        handleOpenModal={handleOpenModal}
-        handleCloseModal={handleCloseModal}
         isSearching = {false}
       />
     );
@@ -31,10 +27,6 @@ describe("CharacterList", () => {
     const { getByText } = render(
       <CharacterList
         characters={mockCharacters}
-        isModalOpen={false}
-        selectedCharacter={mockCharacter}
-        handleOpenModal={handleOpenModal}
-        handleCloseModal={handleCloseModal}
         isSearching = {false}
       />
     );

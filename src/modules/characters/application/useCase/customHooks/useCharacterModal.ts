@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Result } from "../../../domain/result";
+import { Character } from "../../../domain/character";
 
 const useCharacterModal = () => {
   const [isCharacterModalOpen, setIsCharacterModalOpen] = useState(false);
-  const [selectedCharacter, setSelectedCharacter] = useState<Result | undefined>(undefined);
+  const [selectedCharacter, setSelectedCharacter] = useState<Character | undefined>(undefined);
 
-  const handleOpenModal = (character: Result) => {
+  const handleOpenModal = (character: Character) => {
     setSelectedCharacter(character);
     setIsCharacterModalOpen(true);
   };

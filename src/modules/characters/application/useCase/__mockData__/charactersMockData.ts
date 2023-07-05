@@ -1,4 +1,4 @@
-import { Result } from "src/modules/characters/domain/result";
+import { Result } from "src/modules/characters/domain/character";
 
 export const characters: Result[] = [{
     "id": 200,

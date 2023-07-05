@@ -5,7 +5,7 @@ describe('useHome', () => {
   it('should initialize with correct initial state', () => {
     const { result } = renderHook(() => useHome());
 
-    expect(result.current.isModalOpen).toBe(false);
+    expect(result.current.isCharacterModalOpen).toBe(false);
     expect(result.current.selectedCharacter).toBe(null);
     expect(typeof result.current.handleOpenModal).toBe('function');
     expect(typeof result.current.handleCloseModal).toBe('function');
@@ -17,13 +17,13 @@ describe('useHome', () => {
       result.current.handleOpenModal(character);
     });
 
-    expect(result.current.isModalOpen).toBe(true);
+    expect(result.current.isCharacterModalOpen).toBe(true);
     expect(result.current.selectedCharacter).toBe(character);
 
     act(() => {
       result.current.handleCloseModal();
     });
 
-    expect(result.current.isModalOpen).toBe(false);
+    expect(result.current.isCharacterModalOpen).toBe(false);
   });
 });

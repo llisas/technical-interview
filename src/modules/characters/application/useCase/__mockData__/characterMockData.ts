@@ -1,4 +1,4 @@
-import { Result } from "../../../domain/result";
+import { Result } from "../../../domain/character";
 
 export const character: Result = {
   id: 2,
