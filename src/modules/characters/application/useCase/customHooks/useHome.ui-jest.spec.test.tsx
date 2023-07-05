@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react';
-import useHome from './useHome';
+import useHome from './useCharacterModal';
 import {character} from '../__mockData__/characterMockData';
 describe('useHome', () => {
   it('should initialize with correct initial state', () => {

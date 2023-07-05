@@ -2,7 +2,7 @@ import { useState } from "react";
 import CharacterList from "../components/characterList/CharacterList";
 import Paginator from "../components/paginator/Paginator";
 import SearchBar from "../components/searchBar/SearchBar";
-import useHome from "../modules/characters/application/useCase/customHooks/useHome";
+
 import { Result } from "../modules/characters/domain/result";
 import PaginationAdapter from "../modules/characters/application/adapters/PaginationAdapter";
 import paginationService from "../modules/characters/application/services/paginationService";
@@ -23,12 +23,9 @@ const Home = () => {
     setTotalPages,
     setCurrentPage
   );
-
-  const { isModalOpen, selectedCharacter, handleOpenModal, handleCloseModal } =
-    useHome();
-
-  const handleSearchChange = async (event: string) => {
-    searchService.handleSearchChange(event, setIsSearching, paginationAdapter);
+                                                            
+  const handleSearchChange = async (searchTerm: string) => {
+    searchService.handleSearchChange(searchTerm, setIsSearching, paginationAdapter);
   };
 
   const handleNext = () => {
@@ -46,16 +43,12 @@ const Home = () => {
       );
     }
   };
-
+  
   return (
     <div data-testid="home-component">
       <SearchBar onChange={handleSearchChange} />
       <CharacterList
         characters={characters}
-        isModalOpen={isModalOpen}
-        selectedCharacter={selectedCharacter}
-        handleOpenModal={handleOpenModal}
-        handleCloseModal={handleCloseModal}
         isSearching={isSearching}
       />
       {characters.length > 0 && (
@@ -71,3 +64,19 @@ const Home = () => {
 };
 
 export default Home;
+
+
+
+//DONE
+// useHome move to its compoment -> characterList
+
+
+
+
+//TODO
+// improve variables names
+// move to nextjs calls server site -> api folder move to pages folder using => useGetServerSiteProps 
+// test searchService
+
+// useMemo to improve validations in Characterlist compoment
+// after open model navegate to character detail 

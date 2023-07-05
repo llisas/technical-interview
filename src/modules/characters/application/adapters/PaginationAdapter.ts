@@ -1,6 +1,6 @@
-import { Response } from '../../../models/response'; 
-import { Result } from '../../domain/result';
-import { Info } from '../../domain/info';
+import { Response } from "../../../models/response";
+import { Result } from "../../domain/result";
+import { Info } from "../../domain/info";
 
 interface IPaginationAdapter {
   setPaginationData(response: Response): void;
@@ -36,12 +36,9 @@ class PaginationAdapter implements IPaginationAdapter {
   }
 
   updatePaginator(data: Info) {
-    if(data){
-    this.setTotalPages(data.pages);
-    this.setCurrentPage(1);}
-    else{
-      this.setTotalPages(0);
-      this.setCurrentPage(0);
+    if (data) {
+      this.setTotalPages(data.pages);
+      this.setCurrentPage(1);
     }
   }
 

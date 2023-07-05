@@ -4,19 +4,22 @@ import PaginationAdapter from "../adapters/PaginationAdapter";
 
 const searchService = {
   handleSearchChange: async (
-    event: string,
+    searchTerm: string, 
     setIsSearching: (value: boolean) => void,
     paginationAdapter: PaginationAdapter
   ) => {
-    if (event.length > 0) {
+    if (searchTerm.length > 0) {
       setIsSearching(true);
     } else {
       setIsSearching(false);
     }
-    const response: Response = await getSuggestions(event);
+    const response: Response = await getSuggestions(searchTerm);
     paginationAdapter.updatePaginator(response.info);
     paginationAdapter.setPaginationData(response);
   },
 };
 
 export default searchService;
+//TODO TEST mock setIsSearching then verify is we pass false or true 
+
+
