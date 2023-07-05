@@ -1,5 +1,5 @@
 import { Response } from '../../../models/response'; 
-import { Info } from "../../domain/info";
+import { Info } from "../../../models/info";
 import PaginationAdapter from "./PaginationAdapter";
 import { responseMock } from "./__mockData__/responseMockData";
 

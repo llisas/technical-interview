@@ -1,6 +1,6 @@
 import { Response } from "../../../models/response";
 import { Result } from "../../domain/result";
-import { Info } from "../../domain/info";
+import { Info } from "../../../models/info";
 
 interface IPaginationAdapter {
   setPaginationData(response: Response): void;
