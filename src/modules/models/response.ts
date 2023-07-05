@@ -1,7 +1,7 @@
 import { Info } from "./info";
-import { Result } from "../characters/domain/result";
+import { Character } from "../characters/domain/character";
 
 export type Response = { 
   info: Info;
-  results: Result[];
+  results: Character[];
 }
