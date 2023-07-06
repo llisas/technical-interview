@@ -30,7 +30,7 @@ class PaginationAdapter implements IPaginationAdapter {
   }
 
   setPaginationData(response: Response) {
-    this.setCharacters(response?.results || []);
+    this.setCharacters(response?.characters || []);
     this.setNextPageUrl(response?.info?.next || null);
     this.setPreviousPageUrl(response?.info?.prev || null);
   }

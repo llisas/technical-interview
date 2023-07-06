@@ -3,7 +3,7 @@ import { Character } from "../../../domain/character";
 
 const useCharacterModal = () => {
   const [isCharacterModalOpen, setIsCharacterModalOpen] = useState(false);
-  const [selectedCharacter, setSelectedCharacter] = useState<Character | undefined>(undefined);
+  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
 
   const handleOpenModal = (character: Character) => {
     setSelectedCharacter(character);

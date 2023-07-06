@@ -5,13 +5,16 @@ const useSearchBar = ( onChange: (searchTerm: string) => void) => {
   const timerRef = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
+    if (searchTerm !== '') {
     timerRef.current = setTimeout(() => {
       onChange(searchTerm);
     }, 400);
-
     return () => {
       clearTimeout(timerRef.current);
-    };
+    };}
+    else{
+      onChange('')
+    }
   }, [searchTerm]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

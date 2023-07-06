@@ -1,9 +1,9 @@
 import { renderHook, act } from '@testing-library/react';
-import useHome from './useCharacterModal';
+import useCharacterModal from './useCharacterModal';
 import {character} from '../__mockData__/characterMockData';
-describe('useHome', () => {
+describe('useCharacterModal', () => {
   it('should initialize with correct initial state', () => {
-    const { result } = renderHook(() => useHome());
+    const { result } = renderHook(() => useCharacterModal());
 
     expect(result.current.isCharacterModalOpen).toBe(false);
     expect(result.current.selectedCharacter).toBe(null);
@@ -12,7 +12,7 @@ describe('useHome', () => {
   });
 
   it('should open and close modal with selected character', () => {
-    const { result } = renderHook(() => useHome());    
+    const { result } = renderHook(() => useCharacterModal());    
     act(() => {
       result.current.handleOpenModal(character);
     });

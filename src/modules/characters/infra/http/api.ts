@@ -3,10 +3,10 @@ import { Response } from "../../../models/response";
 
 const httpClient: HttpClient = new FetchHttpClient();
 
-export async function getSuggestions(characterName: string): Promise<Response> {
+export async function getSearchTerm(searTerm: string): Promise<Response> {
   try {
    return await httpClient.get(
-      `${process.env.NEXT_PUBLIC_API_URL_BASE}/character/?name=${characterName}`
+      `${process.env.NEXT_PUBLIC_API_URL_BASE}/character/?name=${searTerm}`
     );
   } catch (error) {
     throw new Error("Error getting suggestions");
@@ -31,3 +31,12 @@ export async function getCharactersByUrl(url: string): Promise<Response> {
     throw new Error("Error getting character by url");
   }
 }
+
+export async function getAllCharacters(): Promise<Response> {
+  try {
+    return await httpClient.get(`${process.env.NEXT_PUBLIC_API_URL_BASE}/character`);
+  } catch (error) {
+    throw new Error("Error getting all characters ");
+  }
+}
+

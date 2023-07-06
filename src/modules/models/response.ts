@@ -3,5 +3,5 @@ import { Character } from "../characters/domain/character";
 
 export type Response = { 
   info: Info;
-  results: Character[];
+  characters : Character[];
 }

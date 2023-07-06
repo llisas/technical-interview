@@ -1,21 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Response } from "src/modules/models/response";
+import { getAllCharacters } from "src/modules/characters/infra/http/api";
 import CharacterList from "../components/characterList/CharacterList";
 import Paginator from "../components/paginator/Paginator";
 import SearchBar from "../components/searchBar/SearchBar";
-
 import { Character } from "../modules/characters/domain/character";
 import PaginationAdapter from "../modules/characters/application/adapters/PaginationAdapter";
 import paginationService from "../modules/characters/application/services/paginationService";
 import searchService from "../modules/characters/application/services/searchService";
 
-const Home = () => {
+const Home = ({ response }: { response: Response }) => {
   const [characters, setCharacters] = useState<Character[]>([]);
+  const [allCharacters, setAllCharacters] = useState<Character[]>([]);
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [nextPageUrl, setNextPageUrl] = useState<string | null>("");
   const [previousePageUrl, setPreviousePageUrl] = useState<string | null>("");
   const [isSearching, setIsSearching] = useState(false);
-
   const paginationAdapter = new PaginationAdapter(
     setCharacters,
     setNextPageUrl,
@@ -23,11 +24,30 @@ const Home = () => {
     setTotalPages,
     setCurrentPage
   );
-                                                            
+
+  useEffect(() => {
+    setAllCharacters(response.characters);
+    paginationAdapter.setPaginationData(response);
+    paginationAdapter.updatePaginator(response.info);
+  }, [response]);
+
   const handleSearchChange = async (searchTerm: string) => {
-    searchService.handleSearchChange(searchTerm, setIsSearching, paginationAdapter);
+    if (searchTerm) {
+      searchService.handleSearchChange(
+        searchTerm,
+        setIsSearching,
+        paginationAdapter
+      );
+    } else {
+      resetToAllCharacters();
+    }
   };
 
+  const resetToAllCharacters = () => {
+    setCharacters(allCharacters);
+    paginationAdapter.setPaginationData(response);
+    paginationAdapter.updatePaginator(response.info);
+  };
   const handleNext = () => {
     if (nextPageUrl) {
       paginationService.handleNext(nextPageUrl, currentPage, paginationAdapter);
@@ -43,14 +63,11 @@ const Home = () => {
       );
     }
   };
-  
+
   return (
     <div data-testid="home-component">
       <SearchBar onChange={handleSearchChange} />
-      <CharacterList
-        characters={characters}
-        isSearching={isSearching}
-      />
+      <CharacterList characters={characters} isSearching={isSearching} />
       {characters.length > 0 && (
         <Paginator
           currentPage={currentPage}
@@ -65,18 +82,24 @@ const Home = () => {
 
 export default Home;
 
-
+export async function getServerSideProps(): Promise<{
+  props: { response: Response };
+}> {
+  const response: Response = await getAllCharacters();
+  return {
+    props: {
+      response,
+    },
+  };
+}
 
 //DONE
 // useHome move to its compoment -> characterList
 // CHANGE NAME FROM RESULT TO CHARACTER
-
-
+// move to nextjs calls server site -> api folder move to pages folder using => useGetServerSiteProps
+// improve variables names
 
 //TODO
-// improve variables names
-// move to nextjs calls server site -> api folder move to pages folder using => useGetServerSiteProps 
 // test searchService
-
 // useMemo to improve validations in Characterlist compoment
-// after open model navegate to character detail 
+// after open model navegate to character detail
