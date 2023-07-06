@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { Result } from "../../../domain/result";
+import { Character } from "../../../domain/character";
 
 interface CharacterListUseCaseProps {
-  characters: Result[];
+  characters: Character[];
 }
 
 export function useCharacterList({ characters }: CharacterListUseCaseProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedCharacter, setSelectedCharacter] = useState<Result | null>(null);
+  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
 
-  const handleOpenModal = (character: Result) => {
+  const handleOpenModal = (character: Character) => {
     setSelectedCharacter(character);
     setIsModalOpen(true);
   };

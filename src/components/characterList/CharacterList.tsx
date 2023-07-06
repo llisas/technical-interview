@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Result } from "../../modules/characters/domain/result";
+import { Character } from "../../modules/characters/domain/character";
 import CharacterCard from "../charaterCard/CharacterCard";
 import CharacterModal from "../characterModal/CharacterModal";
 import { CharacterListContainer, EmptyMessage } from "./CharacterList.styles";
-import useCharacterModal from "src/modules/characters/application/useCase/customHooks/useCharacterModal";
+import useCharacterModal from "../../modules/characters/application/useCase/customHooks/useCharacterModal";
 
 interface CharacterListProps {
-  characters: Result[] | null | undefined;
+  characters: Character[] | null | undefined;
   isSearching: boolean;
 }
 

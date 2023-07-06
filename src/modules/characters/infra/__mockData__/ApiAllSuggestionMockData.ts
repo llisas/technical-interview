@@ -1,6 +1,6 @@
 export const allSuggestionsMock = {
   info: { count: 11, pages: 1, next: null, prev: null },
-  results: [
+  characters: [
     {
       id: 200,
       name: "Lawyer Morty",

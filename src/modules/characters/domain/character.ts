@@ -1,6 +1,6 @@
 import { Origin } from "./origin";
 import { Location } from "./location";
-export type Result =  { // TODO CHANGE NAME TO CHARACTER
+export type Character =  { 
     id: number;
     name: string;
     status: string;

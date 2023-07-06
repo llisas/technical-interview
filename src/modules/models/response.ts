@@ -1,7 +1,7 @@
-import { Info } from "../characters/domain/info";
-import { Result } from "../characters/domain/result";
+import { Info } from "./info";
+import { Character } from "../characters/domain/character";
 
 export type Response = { 
   info: Info;
-  results: Result[];
+  characters : Character[];
 }

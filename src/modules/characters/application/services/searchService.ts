@@ -1,4 +1,4 @@
-import { getSuggestions } from "../../infra/http/api";
+import { getSearchTerm } from "../../infra/http/api";
 import { Response } from "../../../models/response";
 import PaginationAdapter from "../adapters/PaginationAdapter";
 
@@ -13,7 +13,7 @@ const searchService = {
     } else {
       setIsSearching(false);
     }
-    const response: Response = await getSuggestions(searchTerm);
+    const response: Response = await getSearchTerm(searchTerm);
     paginationAdapter.updatePaginator(response.info);
     paginationAdapter.setPaginationData(response);
   },

@@ -1,6 +1,6 @@
-import { Result } from "../../../domain/result";
+import { Character } from "../../../domain/character";
 
-export const character: Result = {
+export const character: Character = {
   id: 2,
   name: "Morty Smith",
   status: "Alive",

@@ -1,4 +1,4 @@
-import { Result } from "../../modules/characters/domain/result";
+import { Character } from "../../modules/characters/domain/character";
 import {
   StyledModal,
   CloseButton,
@@ -7,7 +7,7 @@ import {
   InformationContainer,
 } from "./CharacterModal.styles";
 type CharacterModalProps = {
-  character: Result;
+  character: Character;
   isOpen: boolean;
   onClose: () => void;
 };

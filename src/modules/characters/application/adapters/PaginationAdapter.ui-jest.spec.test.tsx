@@ -1,5 +1,5 @@
 import { Response } from '../../../models/response'; 
-import { Info } from "../../domain/info";
+import { Info } from "../../../models/info";
 import PaginationAdapter from "./PaginationAdapter";
 import { responseMock } from "./__mockData__/responseMockData";
 
@@ -29,7 +29,7 @@ describe("PaginationAdapter", () => {
 
     const response: Response = responseMock;
     adapter.setPaginationData(response);
-    expect(setCharacters).toHaveBeenCalledWith(response.results);
+    expect(setCharacters).toHaveBeenCalledWith(response.characters);
     expect(setNextPageUrl).toHaveBeenCalledWith(response.info.next);
     expect(setPreviousPageUrl).toHaveBeenCalledWith(response.info.prev);
   });
