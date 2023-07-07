@@ -1,3 +1,4 @@
+import React from 'react';
 import { Character } from "../../modules/characters/domain/character";
 import {
   StyledModal,
@@ -6,35 +7,51 @@ import {
   ImageContainer,
   InformationContainer,
 } from "./CharacterModal.styles";
+import router from 'next/router';
 type CharacterModalProps = {
   character: Character;
   isOpen: boolean;
   onClose: () => void;
+ 
 };
 
 const CharacterModal = ({
   character,
   isOpen,
-  onClose,
+  onClose
 }: CharacterModalProps) => {
+
+  
+  const onAllInfoClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void => {
+    event.preventDefault(); // Evita el comportamiento predeterminado del enlace
+    router.push(`/character-detail/${character.id}`);
+  }
+
   return (
-    <StyledModal  
+    <StyledModal
       data-testid="character-modal"
       isOpen={isOpen}
       onRequestClose={onClose}
       overlayClassName="modal-overlay"
     >
-      <CloseButton data-testid="close-button" onClick={onClose}>X</CloseButton>
+      <CloseButton data-testid="close-button" onClick={onClose}>
+        X
+      </CloseButton>
       <ContentContainer>
         <ImageContainer>
           <img src={character.image} alt={character.name} />
         </ImageContainer>
         <InformationContainer>
-          <h2>{character.name}</h2>
-          <p>Status: {character.status}</p>
-          <p>Species: {character.species}</p>
-          <p>Type: {character.type}</p>
-          <p>Origin: {character.origin.name}</p>
+          <div>{character.name.toLocaleUpperCase()}</div>
+          <div>STATUS: {character.status}</div>
+          <div>SPECIE: {character.species}</div>
+          <div>TYPE: {character.type}</div>
+          <div>ORIGIN: {character.origin.name}</div>
+          <div>
+            <a  className="info-link" onClick={onAllInfoClick}>
+              ALL INFO
+            </a>
+          </div>
         </InformationContainer>
       </ContentContainer>
     </StyledModal>

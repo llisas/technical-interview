@@ -4,7 +4,7 @@ import PaginationAdapter from "../adapters/PaginationAdapter";
 
 const searchService = {
   handleSearchChange: async (
-    searchTerm: string, 
+    searchTerm: string,
     setIsSearching: (value: boolean) => void,
     paginationAdapter: PaginationAdapter
   ) => {
@@ -20,6 +20,4 @@ const searchService = {
 };
 
 export default searchService;
-//TODO TEST mock setIsSearching then verify is we pass false or true 
-
-
+//TODO TEST mock setIsSearching then verify is we pass false or true

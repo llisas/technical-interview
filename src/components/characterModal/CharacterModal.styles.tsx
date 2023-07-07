@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import ReactModal from "react-modal";
+
 export const StyledModal = styled(ReactModal)`
   width: 500px;
   height: auto;
@@ -17,7 +18,7 @@ export const StyledModal = styled(ReactModal)`
   }
 
   @media (max-width: 600px) {
-    width: 90%;
+    width: 65%;
     height: auto;
   }
 `;
@@ -60,7 +61,35 @@ export const ImageContainer = styled.div`
 
 export const InformationContainer = styled.div`
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color:grey;
+
+  div {
+    text-align: left;
+    padding:5px;∫
+  }
+
+  div:first-of-type {
+    margin: 0;
+    text-align: center;
+    font-size: 24px;
+    text-transform: uppercase;
+  }
+
+  a.info-link {
+    cursor: pointer;
+    color: burlywood;
+    text-decoration: none;
+    transition: color 0.3s;
+
+    &:hover {
+      color:#a25b00;
+    }
+  }
+
   @media (max-width: 600px) {
-    width: 100%;
+    width: 50%;
   }
 `;

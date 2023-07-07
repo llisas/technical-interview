@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Response } from "src/modules/models/response";
-import { getAllCharacters } from "src/modules/characters/infra/http/api";
 import CharacterList from "../components/characterList/CharacterList";
 import Paginator from "../components/paginator/Paginator";
 import SearchBar from "../components/searchBar/SearchBar";
@@ -8,8 +7,9 @@ import { Character } from "../modules/characters/domain/character";
 import PaginationAdapter from "../modules/characters/application/adapters/PaginationAdapter";
 import paginationService from "../modules/characters/application/services/paginationService";
 import searchService from "../modules/characters/application/services/searchService";
+import { getServerSideProps } from "./serverSideProps/getAllCharactersServerSite";
 
-const Home = ({ response }: { response: Response }) => {
+const Home = ({ response }: { response: Response}) => {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [allCharacters, setAllCharacters] = useState<Character[]>([]);
   const [totalPages, setTotalPages] = useState(1);
@@ -31,10 +31,10 @@ const Home = ({ response }: { response: Response }) => {
     paginationAdapter.updatePaginator(response.info);
   }, [response]);
 
-  const handleSearchChange = async (searchTerm: string) => {
-    if (searchTerm) {
+  const handleSearchChange = async (inputSearchTerm: string) => {
+    if (inputSearchTerm) {
       searchService.handleSearchChange(
-        searchTerm,
+        inputSearchTerm,
         setIsSearching,
         paginationAdapter
       );
@@ -48,6 +48,7 @@ const Home = ({ response }: { response: Response }) => {
     paginationAdapter.setPaginationData(response);
     paginationAdapter.updatePaginator(response.info);
   };
+
   const handleNext = () => {
     if (nextPageUrl) {
       paginationService.handleNext(nextPageUrl, currentPage, paginationAdapter);
@@ -81,19 +82,11 @@ const Home = ({ response }: { response: Response }) => {
 };
 
 export default Home;
+export {getServerSideProps};
 
-export async function getServerSideProps(): Promise<{
-  props: { response: Response };
-}> {
-  const response: Response = await getAllCharacters();
-  return {
-    props: {
-      response,
-    },
-  };
-}
 
-//DONE
+
+///DONE
 // useHome move to its compoment -> characterList
 // CHANGE NAME FROM RESULT TO CHARACTER
 // move to nextjs calls server site -> api folder move to pages folder using => useGetServerSiteProps
