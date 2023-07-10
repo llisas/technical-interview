@@ -1,17 +1,29 @@
 import React from 'react';
-import { useRouter } from 'next/router';
-
-const Detail = () => {
-  const router = useRouter();
-  const { id } = router.query;
-
+import { Container, Title, Image, CircleImage, Description } from './id.styles';
+import { Character } from 'src/modules/characters/domain/character';
+import { getServerSideProps } from '../serverSideProps/getCharacterById';
+const Detail = ({ character }: { character: Character}) => {
+ 
   return (
-    <div>
-      <h1>{`Seré el detalle del personaje con id ${id} `} </h1>
-     
-    </div>
+    <Container>
+      <Title>{character.name}</Title>
+      <Image>
+        <CircleImage src={character.image} alt="Imagen" />
+      </Image>
+      <Description>{`CREATED: ${character.created}`}</Description>
+      <Description>{`EPISODES: ${character.episode.length}`}</Description>
+      <Description>{`GENDER: ${character.gender}`}</Description>
+      <Description>{`LOCATION: ${character.location.name}`}</Description>
+      <Description>{`ORIGEN: ${character.origin.name}`}</Description>
+      <Description>{`SPECIE: ${character.species}`}</Description>
+      <Description>{`STATUS: ${character.status}`}</Description>
+      <Description>{`TYPE: ${character.type}`}</Description>
+    </Container>
   );
 };
 
 export default Detail;
+export  {getServerSideProps};
+
+
 

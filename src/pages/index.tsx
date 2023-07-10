@@ -91,8 +91,8 @@ export {getServerSideProps};
 // CHANGE NAME FROM RESULT TO CHARACTER
 // move to nextjs calls server site -> api folder move to pages folder using => useGetServerSiteProps
 // improve variables names
+// after open model navegate to character detail
 
 //TODO
 // test searchService
 // useMemo to improve validations in Characterlist compoment
-// after open model navegate to character detail
