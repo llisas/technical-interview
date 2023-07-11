@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Character } from "../../modules/characters/domain/character";
 import {
   StyledModal,
@@ -7,25 +7,24 @@ import {
   ImageContainer,
   InformationContainer,
 } from "./CharacterModal.styles";
-import router from 'next/router';
+import router from "next/router";
 type CharacterModalProps = {
   character: Character;
   isOpen: boolean;
   onClose: () => void;
- 
 };
 
 const CharacterModal = ({
   character,
   isOpen,
-  onClose
+  onClose,
 }: CharacterModalProps) => {
-
-  
-  const onAllInfoClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void => {
-    event.preventDefault(); // Evita el comportamiento predeterminado del enlace
+  const onAllInfoClick = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ): void => {
+    event.preventDefault();
     router.push(`/character-detail/${character.id}`);
-  }
+  };
 
   return (
     <StyledModal
@@ -48,7 +47,7 @@ const CharacterModal = ({
           <div>TYPE: {character.type}</div>
           <div>ORIGIN: {character.origin.name}</div>
           <div>
-            <a  className="info-link" onClick={onAllInfoClick}>
+            <a className="info-link" onClick={onAllInfoClick}>
               ALL INFO
             </a>
           </div>

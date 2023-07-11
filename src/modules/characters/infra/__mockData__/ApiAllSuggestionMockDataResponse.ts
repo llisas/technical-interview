@@ -1,6 +1,6 @@
-export const allSuggestionsMock = {
+export const allSuggestionsMockResponse = {
   info: { count: 2, pages: 1, next: null, prev: null },
-  results: [
+  characters: [
     {
       id: 595,
       name: "Floaty Non-Gasm Brotherhood Member",

@@ -5,7 +5,7 @@ export const allCharactersByUrl = {
     next: "https://rickandmortyapi.com/api/character?page=3",
     prev: "https://rickandmortyapi.com/api/character?page=1",
   },
-  characters: [
+  results: [
     {
       id: 21,
       name: "Aqua Morty",

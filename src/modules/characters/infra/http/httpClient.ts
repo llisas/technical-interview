@@ -27,5 +27,14 @@ export class FetchHttpClient implements HttpClient {
         throw new Error(`Request error on ${url}`);
       }
     }
+
+    async getApiTest(url: string): Promise<Response> {
+      try {
+        const response = await fetch(url);
+      return  await response.json();
+      } catch (error) {
+        throw new Error(`Request error on ${url}`);
+      }
+    }
 }
 

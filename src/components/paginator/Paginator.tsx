@@ -1,6 +1,6 @@
 import React from "react";
-import { Container, Button, PageInfo } from "./Paginator.styles";
 
+import { Container, Button, PageInfo } from "./Paginator.styles";
 interface PaginatorProps {
   currentPage: number;
   totalPages: number;

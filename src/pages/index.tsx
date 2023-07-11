@@ -43,12 +43,6 @@ const Home = ({ response }: { response: Response}) => {
     }
   };
 
-  const resetToAllCharacters = () => {
-    setCharacters(allCharacters);
-    paginationAdapter.setPaginationData(response);
-    paginationAdapter.updatePaginator(response.info);
-  };
-
   const handleNext = () => {
     if (nextPageUrl) {
       paginationService.handleNext(nextPageUrl, currentPage, paginationAdapter);
@@ -63,6 +57,12 @@ const Home = ({ response }: { response: Response}) => {
         paginationAdapter
       );
     }
+  };
+  
+  const resetToAllCharacters = () => {
+    setCharacters(allCharacters);
+    paginationAdapter.setPaginationData(response);
+    paginationAdapter.updatePaginator(response.info);
   };
 
   return (

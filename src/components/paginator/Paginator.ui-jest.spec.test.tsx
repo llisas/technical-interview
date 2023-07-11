@@ -2,6 +2,7 @@ import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import Paginator from "@/components/paginator/Paginator";
 
+
 describe("Paginator", () => {
   const mockOnPageChange = jest.fn();
   const mockOnNextClick= jest.fn();

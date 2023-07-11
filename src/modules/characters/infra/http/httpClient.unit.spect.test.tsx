@@ -15,7 +15,7 @@ describe("FetchHttpClient", () => {
     });
     const httpClient = new FetchHttpClient();
     await expect(
-      httpClient.get("https://rickandmortyapi.com/api/character?page=2")
+      httpClient.getApiTest("https://rickandmortyapi.com/api/character?page=2")
     ).resolves.toEqual(allCharactersMock);
     expect(global.fetch).toHaveBeenCalledWith(
       "https://rickandmortyapi.com/api/character?page=2"
