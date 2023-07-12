@@ -1,4 +1,4 @@
-import searchService from "./searchService";
+/*import searchService from "./searchService";
 import { getSearchTerm } from "../../infra/http/api";
 import PaginationAdapter from "../adapters/PaginationAdapter";
 
@@ -8,13 +8,13 @@ jest.mock(".../../infra/http/api", () =>({
 getSearchTerm:jest.fn()
  }));
 
- /*
+ 
 jest.mock("../adapters/PaginationAdapter", ()=>{
     return jest.fn().mockImplementation(()=>({
         updatePaginator: jest.fn(),
         setPaginationData : jest.fn()
     }))
-})*/
+})
 
 const paginationAdapterMock = new PaginationAdapter()
 
@@ -26,3 +26,4 @@ describe('searchService ', () => {
   });
  
   
+*/

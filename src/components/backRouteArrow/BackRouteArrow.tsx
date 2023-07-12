@@ -11,9 +11,9 @@ const BackRouteArrow  : React.FunctionComponent<BackRouteArrowProps> = ({
 const router = useRouter();
 return(
 
-      <NavContainer>
-        <BackButton onClick={() => router.back()}>
-          <ArrowIcon />
+      < NavContainer  >
+        <BackButton data-testid ="arrow-icon"  onClick={() => router.back()}>
+          <ArrowIcon  />
           <BackText>{text}</BackText>
         </BackButton>
       </NavContainer>)

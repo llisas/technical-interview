@@ -4,8 +4,8 @@ import CharacterDetail from "./CharacterDetail";
 import {mockCharacter} from "./__mockData__/characterDetailMock"
 
 describe("CharacterDetail", () => {
-  it("renderiza el detalle del personaje correctamente", () => {
-    const { getByText, getByAltText } = render(
+  it("render compomente with correct character detail", () => {
+    const { getByText } = render(
       <CharacterDetail character={mockCharacter} />
     );
     expect(getByText("Garment District Rick")).toBeInTheDocument();

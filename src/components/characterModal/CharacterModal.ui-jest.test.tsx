@@ -65,7 +65,6 @@ describe("CharacterModal", () => {
 
     const allInfoLink = getByText("ALL INFO");
     fireEvent.click(allInfoLink);
-
     expect(router.push).toHaveBeenCalledTimes(1);
     expect(router.push).toHaveBeenCalledWith("/character-detail/1");
   });
