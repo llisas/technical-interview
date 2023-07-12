@@ -85,7 +85,7 @@ export default Home;
 export {getServerSideProps};
 
 
-
+//JAIME
 ///DONE
 // useHome move to its compoment -> characterList
 // CHANGE NAME FROM RESULT TO CHARACTER
@@ -93,6 +93,12 @@ export {getServerSideProps};
 // improve variables names
 // after open model navegate to character detail
 
-//TODO
-// test searchService
-// useMemo to improve validations in Characterlist compoment
+//TODO 
+// useMemo to improve validations in Characterlist compoment ??
+
+
+//NICO
+//Create filter to order from a to z name or specie
+//Create  squeleton index and detailf
+//Divide components character detail, remove data emphy loke Summer Smith detail
+//Test searchService andvos compomente

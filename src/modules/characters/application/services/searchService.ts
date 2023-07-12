@@ -20,4 +20,3 @@ const searchService = {
 };
 
 export default searchService;
-//TODO TEST mock setIsSearching then verify is we pass false or true

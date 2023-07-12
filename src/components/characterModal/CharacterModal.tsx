@@ -8,6 +8,7 @@ import {
   InformationContainer,
 } from "./CharacterModal.styles";
 import router from "next/router";
+
 type CharacterModalProps = {
   character: Character;
   isOpen: boolean;

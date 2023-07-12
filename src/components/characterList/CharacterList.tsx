@@ -20,7 +20,7 @@ const CharacterList = ({ characters, isSearching }: CharacterListProps) => {
 
   return (
     <div data-testid="character-list">
-      {selectedCharacter && ( // TODO what this does?
+      {selectedCharacter && ( 
         <CharacterModal
           character={selectedCharacter}
           isOpen={isCharacterModalOpen}
@@ -28,7 +28,7 @@ const CharacterList = ({ characters, isSearching }: CharacterListProps) => {
         />
       )}
       {characters?.length === 0 &&
-        isSearching && ( // TODO MOVE TO A USEMEMO
+        isSearching && ( 
           <EmptyMessage>
             <p>No characters found </p>
             <img
@@ -38,7 +38,7 @@ const CharacterList = ({ characters, isSearching }: CharacterListProps) => {
           </EmptyMessage>
         )}
       {characters &&
-        characters.length > 0 && ( //TODO CAN WE USE HERE USEMEMO ??
+        characters.length > 0 && ( 
           <CharacterListContainer>
             {characters.map((character) => (
               <CharacterCard

@@ -1,29 +1,19 @@
 import React from 'react';
-import { Container, Title, Image, CircleImage, Description } from './id.styles';
+import { Container, Title, Image, CircleImage, Description} from './id.styles';
+import BackRouteArrow from "../../components/backRouteArrow/BackRouteArrow"
 import { Character } from 'src/modules/characters/domain/character';
 import { getServerSideProps } from '../serverSideProps/getCharacterById';
+import CharacterDetail from '@/components/characterDetail/CharacterDetail';
 const Detail = ({ character }: { character: Character}) => {
- 
   return (
     <Container>
-      <Title>{character.name}</Title>
-      <Image>
-        <CircleImage src={character.image} alt="Imagen" />
-      </Image>
-      <Description>{`CREATED: ${character.created}`}</Description>
-      <Description>{`EPISODES: ${character.episode.length}`}</Description>
-      <Description>{`GENDER: ${character.gender}`}</Description>
-      <Description>{`LOCATION: ${character.location.name}`}</Description>
-      <Description>{`ORIGEN: ${character.origin.name}`}</Description>
-      <Description>{`SPECIE: ${character.species}`}</Description>
-      <Description>{`STATUS: ${character.status}`}</Description>
-      <Description>{`TYPE: ${character.type}`}</Description>
+        <BackRouteArrow text="BACK TO LIST" ></BackRouteArrow>
+        <CharacterDetail character={character}></CharacterDetail>
     </Container>
   );
 };
 
 export default Detail;
 export  {getServerSideProps};
-
 
 
