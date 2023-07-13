@@ -10,10 +10,11 @@ import PaginationAdapter from "../modules/characters/application/adapters/Pagina
 import paginationService from "../modules/characters/application/services/paginationService";
 import searchService from "../modules/characters/application/services/searchService";
 import { getServerSideProps } from "./serverSideProps/getAllCharactersServerSite";
-import React, { Suspense } from 'react';
+import React from 'react';
 
 
 const Home = ({ response }: { response: Response}) => {
+  
   const [characters, setCharacters] = useState<Character[]>([]);
   const [allCharacters, setAllCharacters] = useState<Character[]>([]);
   const [totalPages, setTotalPages] = useState(1);
@@ -48,13 +49,17 @@ const Home = ({ response }: { response: Response}) => {
   };
 
   const handleNext = () => {
+    setIsSearching(false);
     if (nextPageUrl) {
+      setCharacters([]);
       paginationService.handleNext(nextPageUrl, currentPage, paginationAdapter);
     }
   };
 
   const handlePreviouse = () => {
+    setIsSearching(false);
     if (previousePageUrl) {
+      setCharacters([]);
       paginationService.handlePrevious(
         previousePageUrl,
         currentPage,
@@ -65,6 +70,7 @@ const Home = ({ response }: { response: Response}) => {
   
   const resetToAllCharacters = () => {
     setCharacters(allCharacters);
+    setIsSearching(false);
     paginationAdapter.setPaginationData(response);
     paginationAdapter.updatePaginator(response.info);
   };
@@ -73,7 +79,7 @@ const Home = ({ response }: { response: Response}) => {
   return (
     <div data-testid="home-component">
       <SearchBar onChange={handleSearchChange} />
-      <CharacterList characters={characters} isSearching={isSearching} />
+        <CharacterList characters={characters} isSearching={isSearching} />
       {characters.length > 0 && (
         <Paginator
           currentPage={currentPage}
