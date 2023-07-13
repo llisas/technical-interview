@@ -102,9 +102,14 @@ export {getServerSideProps};
 // useMemo to improve validations in Characterlist compoment ??
 
 
+
 //NICO
-//Create filter to order from a to z name or specie
+//DONE
 //Create  squeleton index and detailf
 //Divide components character detail, remove data emphy loke Summer Smith detail
+
+
+//TODO
+//Create filter to order from a to z name or specie
 //Test searchService andvos compo*/
 
