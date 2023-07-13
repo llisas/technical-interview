@@ -5,6 +5,7 @@ import CharacterModal from "../characterModal/CharacterModal";
 import { CharacterListContainer, EmptyMessage } from "./CharacterList.styles";
 import useCharacterModal from "../../modules/characters/application/useCase/customHooks/useCharacterModal";
 
+
 interface CharacterListProps {
   characters: Character[] | null | undefined;
   isSearching: boolean;

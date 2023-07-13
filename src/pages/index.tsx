@@ -1,3 +1,5 @@
+
+
 import { useState, useEffect } from "react";
 import { Response } from "src/modules/models/response";
 import CharacterList from "../components/characterList/CharacterList";
@@ -8,6 +10,8 @@ import PaginationAdapter from "../modules/characters/application/adapters/Pagina
 import paginationService from "../modules/characters/application/services/paginationService";
 import searchService from "../modules/characters/application/services/searchService";
 import { getServerSideProps } from "./serverSideProps/getAllCharactersServerSite";
+import React, { Suspense } from 'react';
+
 
 const Home = ({ response }: { response: Response}) => {
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -64,7 +68,8 @@ const Home = ({ response }: { response: Response}) => {
     paginationAdapter.setPaginationData(response);
     paginationAdapter.updatePaginator(response.info);
   };
-
+  
+ 
   return (
     <div data-testid="home-component">
       <SearchBar onChange={handleSearchChange} />
@@ -101,4 +106,5 @@ export {getServerSideProps};
 //Create filter to order from a to z name or specie
 //Create  squeleton index and detailf
 //Divide components character detail, remove data emphy loke Summer Smith detail
-//Test searchService andvos compomente
+//Test searchService andvos compo*/
+
