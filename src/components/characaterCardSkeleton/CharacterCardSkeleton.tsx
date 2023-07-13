@@ -1,12 +1,12 @@
 import {SkeletonCardContainer,SkeletonImageWrapper, SkeletonImage, SkeletonName, SkeletonContainer} from "./CharacterCardSkeleton.styles"
 
-
 const SkeletonComponent = () => {
   return (
     <SkeletonCardContainer>
       <SkeletonImageWrapper>
         <SkeletonImage />
       </SkeletonImageWrapper>
+      <SkeletonName />
       <SkeletonName />
     </SkeletonCardContainer>
   );
