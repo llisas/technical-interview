@@ -46,9 +46,8 @@ export const SkeletonName = styled.div`
   background-color: #ccc;
 `;
 
-
 export const SkeletonContainer = styled.div`
-margin-top: 165px;
+margin-top: 135px;
 display: grid;
 grid-template-columns: repeat(5, 1fr);
 gap: 20px;

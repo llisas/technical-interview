@@ -1,5 +1,3 @@
-
-
 import { useState, useEffect } from "react";
 import { Response } from "src/modules/models/response";
 import CharacterList from "../components/characterList/CharacterList";
@@ -9,11 +7,12 @@ import { Character } from "../modules/characters/domain/character";
 import PaginationAdapter from "../modules/characters/application/adapters/PaginationAdapter";
 import paginationService from "../modules/characters/application/services/paginationService";
 import searchService from "../modules/characters/application/services/searchService";
+import ToggleButton from "../components/toogleButton/ToggleButton";
 import { getServerSideProps } from "./serverSideProps/getAllCharactersServerSite";
-import React, { Suspense } from 'react';
+import { RickAndMortyCharacterRepository } from "src/modules/characters/application/adapters/RickAndMortyCharacterRepository";
+import React from "react";
 
-
-const Home = ({ response }: { response: Response}) => {
+const Home = ({ response }: { response: Response }) => {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [allCharacters, setAllCharacters] = useState<Character[]>([]);
   const [totalPages, setTotalPages] = useState(1);
@@ -21,12 +20,18 @@ const Home = ({ response }: { response: Response}) => {
   const [nextPageUrl, setNextPageUrl] = useState<string | null>("");
   const [previousePageUrl, setPreviousePageUrl] = useState<string | null>("");
   const [isSearching, setIsSearching] = useState(false);
+  const [isOrderByName, setisOrderByName] = useState(false);
+  const [isOrderBySpecie, setIsOrderBySpecie] = useState(false);
+
   const paginationAdapter = new PaginationAdapter(
     setCharacters,
     setNextPageUrl,
     setPreviousePageUrl,
     setTotalPages,
     setCurrentPage
+  );
+  const characterOrderRepository = new RickAndMortyCharacterRepository(
+    characters
   );
 
   useEffect(() => {
@@ -36,6 +41,7 @@ const Home = ({ response }: { response: Response}) => {
   }, [response]);
 
   const handleSearchChange = async (inputSearchTerm: string) => {
+    setIsSearching(true);
     if (inputSearchTerm) {
       searchService.handleSearchChange(
         inputSearchTerm,
@@ -48,13 +54,17 @@ const Home = ({ response }: { response: Response}) => {
   };
 
   const handleNext = () => {
+    setIsSearching(false);
     if (nextPageUrl) {
+      setCharacters([]);
       paginationService.handleNext(nextPageUrl, currentPage, paginationAdapter);
     }
   };
 
   const handlePreviouse = () => {
+    setIsSearching(false);
     if (previousePageUrl) {
+      setCharacters([]);
       paginationService.handlePrevious(
         previousePageUrl,
         currentPage,
@@ -62,17 +72,36 @@ const Home = ({ response }: { response: Response}) => {
       );
     }
   };
-  
+
+  const handleOrderByName = () => {
+    setisOrderByName(!isOrderByName);
+    setCharacters(characterOrderRepository.orderCharactersByName(characters));
+  };
+
+  const handleOrderBySpecie = () => {
+    setIsOrderBySpecie(!isOrderBySpecie);
+  };
+
   const resetToAllCharacters = () => {
     setCharacters(allCharacters);
+    setIsSearching(false);
     paginationAdapter.setPaginationData(response);
     paginationAdapter.updatePaginator(response.info);
   };
-  
- 
+
   return (
     <div data-testid="home-component">
       <SearchBar onChange={handleSearchChange} />
+      <ToggleButton
+        name="Order by name"
+        active={isOrderByName}
+        onToggle={handleOrderByName}
+      />
+      <ToggleButton
+        name="Order by specie"
+        active={isOrderBySpecie}
+        onToggle={handleOrderBySpecie}
+      />
       <CharacterList characters={characters} isSearching={isSearching} />
       {characters.length > 0 && (
         <Paginator
@@ -87,8 +116,7 @@ const Home = ({ response }: { response: Response}) => {
 };
 
 export default Home;
-export {getServerSideProps};
-
+export { getServerSideProps };
 
 //JAIME
 ///DONE
@@ -98,18 +126,14 @@ export {getServerSideProps};
 // improve variables names
 // after open model navegate to character detail
 
-//TODO 
+//TODO
 // useMemo to improve validations in Characterlist compoment ??
-
-
 
 //NICO
 //DONE
 //Create  squeleton index and detailf
 //Divide components character detail, remove data emphy loke Summer Smith detail
 
-
 //TODO
 //Create filter to order from a to z name or specie
 //Test searchService andvos compo*/
-

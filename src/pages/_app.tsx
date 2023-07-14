@@ -26,7 +26,3 @@ export default function rickyMortyApp({ Component, pageProps }: AppProps) {
     </>
   );
 }
-
-
-
-

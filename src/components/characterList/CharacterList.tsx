@@ -4,7 +4,7 @@ import CharacterCard from "../charaterCard/CharacterCard";
 import CharacterModal from "../characterModal/CharacterModal";
 import { CharacterListContainer, EmptyMessage } from "./CharacterList.styles";
 import useCharacterModal from "../../modules/characters/application/useCase/customHooks/useCharacterModal";
-
+import CharacterCardSkelton from "@/components/characaterCardSkeleton/CharacterCardSkeleton";
 
 interface CharacterListProps {
   characters: Character[] | null | undefined;
@@ -21,37 +21,39 @@ const CharacterList = ({ characters, isSearching }: CharacterListProps) => {
 
   return (
     <div data-testid="character-list">
-      {selectedCharacter && ( 
+      {selectedCharacter && (
         <CharacterModal
           character={selectedCharacter}
           isOpen={isCharacterModalOpen}
           onClose={handleCloseModal}
         />
       )}
+  
       {characters?.length === 0 &&
-        isSearching && ( 
-          <EmptyMessage>
-            <p>No characters found </p>
-            <img
-              src="https://decider.com/wp-content/uploads/2021/07/rick-and-morty-8.jpg?quality=75&strip=all"
-              alt="No characters"
+        <CharacterCardSkelton ></CharacterCardSkelton>}
+
+      {characters?.length === 0 && isSearching && (
+        <EmptyMessage>
+          <p>No characters found</p>
+          <img
+            src="https://decider.com/wp-content/uploads/2021/07/rick-and-morty-8.jpg?quality=75&strip=all"
+            alt="No characters"
+          />
+        </EmptyMessage>
+      )}
+  
+      {characters && characters.length > 0 &&
+        <CharacterListContainer>
+          {characters.map((character) => (
+            <CharacterCard
+              key={character.id}
+              character={character}
+              onClick={() => handleOpenModal(character)}
             />
-          </EmptyMessage>
-        )}
-      {characters &&
-        characters.length > 0 && ( 
-          <CharacterListContainer>
-            {characters.map((character) => (
-              <CharacterCard
-                key={character.id}
-                character={character}
-                onClick={() => handleOpenModal(character)}
-              />
-            ))}
-          </CharacterListContainer>
-        )}
+          ))}
+        </CharacterListContainer>
+      }
     </div>
-    
   );
 };
 
