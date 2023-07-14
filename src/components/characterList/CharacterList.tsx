@@ -29,6 +29,9 @@ const CharacterList = ({ characters, isSearching }: CharacterListProps) => {
         />
       )}
   
+      {characters?.length === 0 &&
+        <CharacterCardSkelton ></CharacterCardSkelton>}
+
       {characters?.length === 0 && isSearching && (
         <EmptyMessage>
           <p>No characters found</p>
@@ -39,7 +42,7 @@ const CharacterList = ({ characters, isSearching }: CharacterListProps) => {
         </EmptyMessage>
       )}
   
-      {characters && characters.length > 0 ? (
+      {characters && characters.length > 0 &&
         <CharacterListContainer>
           {characters.map((character) => (
             <CharacterCard
@@ -49,9 +52,7 @@ const CharacterList = ({ characters, isSearching }: CharacterListProps) => {
             />
           ))}
         </CharacterListContainer>
-      ) : (
-        <CharacterCardSkelton />
-      )}
+      }
     </div>
   );
 };
