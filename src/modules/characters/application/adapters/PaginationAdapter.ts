@@ -10,6 +10,7 @@ interface IPaginationAdapter {
 
 class PaginationAdapter implements IPaginationAdapter {
   private setCharacters: (characters: Character[]) => void;
+  private setPreOrderCharacters : (characters: Character[]) => void;
   private setNextPageUrl: (nextPageUrl: string | null) => void;
   private setPreviousPageUrl: (previousPageUrl: string | null) => void;
   private setTotalPages: (totalPages: number) => void;
@@ -17,12 +18,14 @@ class PaginationAdapter implements IPaginationAdapter {
 
   constructor(
     setCharacters: (characters: Character[]) => void,
+    setPreOrderCharacters: (characters: Character[]) => void,
     setNextPageUrl: (nextPageUrl: string | null) => void,
     setPreviousPageUrl: (previousPageUrl: string | null) => void,
     setTotalPages: (totalPages: number) => void,
     setCurrentPage: (currentPage: number) => void
   ) {
     this.setCharacters = setCharacters;
+    this.setPreOrderCharacters = setPreOrderCharacters;
     this.setNextPageUrl = setNextPageUrl;
     this.setPreviousPageUrl = setPreviousPageUrl;
     this.setTotalPages = setTotalPages;
@@ -31,6 +34,7 @@ class PaginationAdapter implements IPaginationAdapter {
 
   setPaginationData(response: Response) {
     this.setCharacters(response?.characters || []);
+    this.setPreOrderCharacters(response?.characters || []);
     this.setNextPageUrl(response?.info?.next || null);
     this.setPreviousPageUrl(response?.info?.prev || null);
   }

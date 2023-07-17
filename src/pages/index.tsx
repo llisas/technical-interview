@@ -10,10 +10,12 @@ import searchService from "../modules/characters/application/services/searchServ
 import ToggleButton from "../components/toogleButton/ToggleButton";
 import { getServerSideProps } from "./serverSideProps/getAllCharactersServerSite";
 import { RickAndMortyCharacterRepository } from "src/modules/characters/application/adapters/RickAndMortyCharacterRepository";
+import {CenteredDiv } from './index.styles'
 import React from "react";
 
 const Home = ({ response }: { response: Response }) => {
   const [characters, setCharacters] = useState<Character[]>([]);
+  const [preOrderCharacters, setPreOrderCharacters] = useState<Character[]>([]);
   const [allCharacters, setAllCharacters] = useState<Character[]>([]);
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,6 +27,7 @@ const Home = ({ response }: { response: Response }) => {
 
   const paginationAdapter = new PaginationAdapter(
     setCharacters,
+    setPreOrderCharacters,
     setNextPageUrl,
     setPreviousePageUrl,
     setTotalPages,
@@ -36,10 +39,24 @@ const Home = ({ response }: { response: Response }) => {
 
   useEffect(() => {
     setAllCharacters(response.characters);
+    setCharacters(response.characters);
+    setPreOrderCharacters(response.characters);
     paginationAdapter.setPaginationData(response);
     paginationAdapter.updatePaginator(response.info);
   }, [response]);
 
+  useEffect(() => {
+    if (isOrderBySpecie && isOrderByName) {
+      setCharacters(characterOrderRepository.orderCharactersByNameAndSpecie(characters));
+    } else if (isOrderBySpecie) {
+      setCharacters(characterOrderRepository.orderCharactersBySpecies(characters));
+    } else if (isOrderByName) {
+      setCharacters(characterOrderRepository.orderCharactersByName(characters));
+    } else {
+      setCharacters(preOrderCharacters);
+    }
+  }, [isOrderBySpecie, isOrderByName, preOrderCharacters]);
+  
   const handleSearchChange = async (inputSearchTerm: string) => {
     setIsSearching(true);
     if (inputSearchTerm) {
@@ -75,7 +92,6 @@ const Home = ({ response }: { response: Response }) => {
 
   const handleOrderByName = () => {
     setisOrderByName(!isOrderByName);
-    setCharacters(characterOrderRepository.orderCharactersByName(characters));
   };
 
   const handleOrderBySpecie = () => {
@@ -92,6 +108,7 @@ const Home = ({ response }: { response: Response }) => {
   return (
     <div data-testid="home-component">
       <SearchBar onChange={handleSearchChange} />
+      <CenteredDiv>
       <ToggleButton
         name="Order by name"
         active={isOrderByName}
@@ -102,6 +119,7 @@ const Home = ({ response }: { response: Response }) => {
         active={isOrderBySpecie}
         onToggle={handleOrderBySpecie}
       />
+      </CenteredDiv>
       <CharacterList characters={characters} isSearching={isSearching} />
       {characters.length > 0 && (
         <Paginator
@@ -133,7 +151,7 @@ export { getServerSideProps };
 //DONE
 //Create  squeleton index and detailf
 //Divide components character detail, remove data emphy loke Summer Smith detail
+//Create filter to order from a to z name or specie
 
 //TODO
-//Create filter to order from a to z name or specie
 //Test searchService andvos compo*/
