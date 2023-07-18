@@ -27,5 +27,6 @@ cursor: pointer;
 
 export const ToggleButtonLabel = styled.span`
   font-size: 12px;
-  padding : 15px
+  margin: 8px
+ 
 `;

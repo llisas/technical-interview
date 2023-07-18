@@ -7,7 +7,7 @@ export const ContainerSkeleton = styled.div`
   justify-content: center;
   height: auto;
   margin-bottom: 45px;
-  margin-top :200px;
+  margin-top :160px;
   animation: loadingAnimation 1s infinite ease-in-out;
 
   @keyframes loadingAnimation {

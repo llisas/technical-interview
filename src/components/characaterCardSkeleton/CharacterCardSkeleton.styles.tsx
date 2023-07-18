@@ -18,7 +18,6 @@ export const SkeletonCardContainer = styled.div`
   align-items: center;
   cursor: pointer;
   border: 1px solid gray;
-  margin-top: 10px;  
   margin-bottom: 80px;
   padding: 1vh;
   flex-basis: 20%;
@@ -36,7 +35,7 @@ export const SkeletonImage = styled.div`
   width: 150px;
   height: 150px;
   background-color: #ccc;
-  margin-top: -50%;
+  margin-top: -45%;
 `;
 
 export const SkeletonName = styled.div`
@@ -47,7 +46,7 @@ export const SkeletonName = styled.div`
 `;
 
 export const SkeletonContainer = styled.div`
-margin-top: 135px;
+margin-top: 110px;
 display: grid;
 grid-template-columns: repeat(5, 1fr);
 gap: 20px;

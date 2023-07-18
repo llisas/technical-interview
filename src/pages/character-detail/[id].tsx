@@ -13,7 +13,7 @@ const Detail = ({ character }: { character: Character }) => {
     // delay in order to see the skeleton
     setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 2000);
   }, []);
 
   return (

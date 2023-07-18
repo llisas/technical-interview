@@ -3,27 +3,28 @@ import React from "react";
 import ToggleButton from "../toogleButton/ToggleButton";
 import { CenteredDiv } from "./characterFilter.styles";
 
-const CharacterFilter = () => {
-  const [isOrderByName, setisOrderByName] = useState(false);
-  const [isOrderBySpecie, setIsOrderBySpecie] = useState(false);
+interface CharacterFilterProps {
+  isOrderByName: boolean;
+  isOrderBySpecie: boolean;
+  handleOrderByName: () => void;
+  handleOrderBySpecie: () => void;
+}
 
-  const handleOrderByName = () => {
-    setisOrderByName(!isOrderByName);
-  };
-
-  const handleOrderBySpecie = () => {
-    setIsOrderBySpecie(!isOrderBySpecie);
-  };
-
+const CharacterFilter: React.FunctionComponent<CharacterFilterProps> = ({
+  isOrderByName,
+  isOrderBySpecie,
+  handleOrderByName,
+  handleOrderBySpecie,
+}) => {
   return (
     <CenteredDiv>
       <ToggleButton
-        name="Order by name"
+        name="ORDER BY NAME"
         active={isOrderByName}
         onToggle={handleOrderByName}
       />
       <ToggleButton
-        name="Order by specie"
+        name="ORDER BY SPECIE"
         active={isOrderBySpecie}
         onToggle={handleOrderBySpecie}
       />

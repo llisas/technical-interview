@@ -4,7 +4,6 @@ import CharacterCard from "../charaterCard/CharacterCard";
 import CharacterModal from "../characterModal/CharacterModal";
 import { CharacterListContainer, EmptyMessage } from "./CharacterList.styles";
 import useCharacterModal from "../../modules/characters/application/useCase/customHooks/useCharacterModal";
-import CharacterCardSkelton from "@/components/characaterCardSkeleton/CharacterCardSkeleton";
 
 interface CharacterListProps {
   characters: Character[] | null | undefined;
@@ -28,9 +27,6 @@ const CharacterList = ({ characters, isSearching }: CharacterListProps) => {
           onClose={handleCloseModal}
         />
       )}
-  
-      {characters?.length === 0 &&
-        <CharacterCardSkelton ></CharacterCardSkelton>}
 
       {characters?.length === 0 && isSearching && (
         <EmptyMessage>

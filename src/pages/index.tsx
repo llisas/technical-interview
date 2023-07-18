@@ -7,12 +7,12 @@ import { Character } from "../modules/characters/domain/character";
 import PaginationAdapter from "../modules/characters/application/adapters/PaginationAdapter";
 import paginationService from "../modules/characters/application/services/paginationService";
 import searchService from "../modules/characters/application/services/searchService";
-import ToggleButton from "../components/toogleButton/ToggleButton";
 import { getServerSideProps } from "./serverSideProps/getAllCharactersServerSite";
 import { RickAndMortyCharacterRepository } from "src/modules/characters/application/adapters/RickAndMortyCharacterRepository";
-import { CenteredDiv } from "./index.styles";
 import React from "react";
 import CharacterCardSkeleton from "@/components/characaterCardSkeleton/CharacterCardSkeleton";
+
+import CharacterFilter from "@/components/characterFilter/characterFilter";
 
 const Home = ({ response }: { response: Response }) => {
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -32,7 +32,7 @@ const Home = ({ response }: { response: Response }) => {
     setTimeout(() => {
       setIsLoading(false);
     }, 3000);
-  }, []);
+  }, [isLoading]);
 
   const paginationAdapter = new PaginationAdapter(
     setCharacters,
@@ -85,14 +85,15 @@ const Home = ({ response }: { response: Response }) => {
 
   const handleNext = () => {
     setIsSearching(false);
+    setIsLoading(true);
     if (nextPageUrl) {
-      setCharacters([]);
       paginationService.handleNext(nextPageUrl, currentPage, paginationAdapter);
     }
   };
 
   const handlePreviouse = () => {
     setIsSearching(false);
+    setIsLoading(true);
     if (previousePageUrl) {
       setCharacters([]);
       paginationService.handlePrevious(
@@ -122,18 +123,12 @@ const Home = ({ response }: { response: Response }) => {
     <>
       <div data-testid="home-component">
         <SearchBar onChange={handleSearchChange} />
-        <CenteredDiv>
-          <ToggleButton
-            name="Order by name"
-            active={isOrderByName}
-            onToggle={handleOrderByName}
-          />
-          <ToggleButton
-            name="Order by specie"
-            active={isOrderBySpecie}
-            onToggle={handleOrderBySpecie}
-          />
-        </CenteredDiv>
+        <CharacterFilter
+        isOrderByName={isOrderByName}
+        isOrderBySpecie={isOrderBySpecie}
+        handleOrderByName={handleOrderByName}
+        handleOrderBySpecie={handleOrderBySpecie}
+      />
 
         {isLoading ? (
           <CharacterCardSkeleton />

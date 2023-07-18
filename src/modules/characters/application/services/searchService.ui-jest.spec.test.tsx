@@ -26,4 +26,36 @@ describe('searchService ', () => {
   });
  
   
+import NombreDeLaClase from './nombreDeLaClase';
+
+// Mockear la clase
+jest.mock('./nombreDeLaClase');
+
+// Acceder a la implementación de la clase mockeada
+const ClaseMockeada = NombreDeLaClase as jest.MockedClass<typeof NombreDeLaClase>;
+
+// Ejemplo de uso en una prueba
+test('nombre de la prueba', () => {
+  // Crear una instancia de la clase mockeada
+  const instanciaMockeada = new ClaseMockeada();
+
+  // Configurar el comportamiento de los métodos mockeados
+  instanciaMockeada.metodo.mockImplementation(() => {
+    // Implementación personalizada para la prueba
+  });
+
+  // Realizar las aserciones necesarias
+});
+
+
+
+
+
 */
+
+import searchService from './searchService';
+import { getSearchTerm } from '../../infra/http/api';
+import PaginationAdapter from '../adapters/PaginationAdapter';
+import {responseMock} from './__mockData__/responseMockData'
+
+
