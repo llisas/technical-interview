@@ -10,8 +10,9 @@ import searchService from "../modules/characters/application/services/searchServ
 import ToggleButton from "../components/toogleButton/ToggleButton";
 import { getServerSideProps } from "./serverSideProps/getAllCharactersServerSite";
 import { RickAndMortyCharacterRepository } from "src/modules/characters/application/adapters/RickAndMortyCharacterRepository";
-import {CenteredDiv } from './index.styles'
+import { CenteredDiv } from "./index.styles";
 import React from "react";
+import CharacterCardSkeleton from "@/components/characaterCardSkeleton/CharacterCardSkeleton";
 
 const Home = ({ response }: { response: Response }) => {
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -24,6 +25,14 @@ const Home = ({ response }: { response: Response }) => {
   const [isSearching, setIsSearching] = useState(false);
   const [isOrderByName, setisOrderByName] = useState(false);
   const [isOrderBySpecie, setIsOrderBySpecie] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // delay in order to see the skeleton
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }, []);
 
   const paginationAdapter = new PaginationAdapter(
     setCharacters,
@@ -47,16 +56,20 @@ const Home = ({ response }: { response: Response }) => {
 
   useEffect(() => {
     if (isOrderBySpecie && isOrderByName) {
-      setCharacters(characterOrderRepository.orderCharactersByNameAndSpecie(characters));
+      setCharacters(
+        characterOrderRepository.orderCharactersByNameAndSpecie(characters)
+      );
     } else if (isOrderBySpecie) {
-      setCharacters(characterOrderRepository.orderCharactersBySpecies(characters));
+      setCharacters(
+        characterOrderRepository.orderCharactersBySpecies(characters)
+      );
     } else if (isOrderByName) {
       setCharacters(characterOrderRepository.orderCharactersByName(characters));
     } else {
       setCharacters(preOrderCharacters);
     }
   }, [isOrderBySpecie, isOrderByName, preOrderCharacters]);
-  
+
   const handleSearchChange = async (inputSearchTerm: string) => {
     setIsSearching(true);
     if (inputSearchTerm) {
@@ -106,30 +119,38 @@ const Home = ({ response }: { response: Response }) => {
   };
 
   return (
-    <div data-testid="home-component">
-      <SearchBar onChange={handleSearchChange} />
-      <CenteredDiv>
-      <ToggleButton
-        name="Order by name"
-        active={isOrderByName}
-        onToggle={handleOrderByName}
-      />
-      <ToggleButton
-        name="Order by specie"
-        active={isOrderBySpecie}
-        onToggle={handleOrderBySpecie}
-      />
-      </CenteredDiv>
-      <CharacterList characters={characters} isSearching={isSearching} />
-      {characters.length > 0 && (
-        <Paginator
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onNextClick={handleNext}
-          onPreviousClick={handlePreviouse}
-        />
-      )}
-    </div>
+    <>
+      <div data-testid="home-component">
+        <SearchBar onChange={handleSearchChange} />
+        <CenteredDiv>
+          <ToggleButton
+            name="Order by name"
+            active={isOrderByName}
+            onToggle={handleOrderByName}
+          />
+          <ToggleButton
+            name="Order by specie"
+            active={isOrderBySpecie}
+            onToggle={handleOrderBySpecie}
+          />
+        </CenteredDiv>
+
+        {isLoading ? (
+          <CharacterCardSkeleton />
+        ) : (
+          <CharacterList characters={characters} isSearching={isSearching} />
+        )}
+
+        {characters.length > 0 && (
+          <Paginator
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onNextClick={handleNext}
+            onPreviousClick={handlePreviouse}
+          />
+        )}
+      </div>
+    </>
   );
 };
 
@@ -143,9 +164,6 @@ export { getServerSideProps };
 // move to nextjs calls server site -> api folder move to pages folder using => useGetServerSiteProps
 // improve variables names
 // after open model navegate to character detail
-
-//TODO
-// useMemo to improve validations in Characterlist compoment ??
 
 //NICO
 //DONE

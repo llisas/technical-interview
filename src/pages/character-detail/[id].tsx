@@ -1,19 +1,34 @@
-import React from 'react';
-import { Container, Title, Image, CircleImage, Description} from './id.styles';
-import BackRouteArrow from "../../components/backRouteArrow/BackRouteArrow"
-import { Character } from 'src/modules/characters/domain/character';
-import { getServerSideProps } from '../serverSideProps/getCharacterById';
-import CharacterDetail from '@/components/characterDetail/CharacterDetail';
-const Detail = ({ character }: { character: Character}) => {
+import React, { useEffect, useState } from "react";
+import { Container, Title, Image, CircleImage, Description } from "./id.styles";
+import BackRouteArrow from "../../components/backRouteArrow/BackRouteArrow";
+import { Character } from "src/modules/characters/domain/character";
+import { getServerSideProps } from "../serverSideProps/getCharacterById";
+import CharacterDetail from "@/components/characterDetail/CharacterDetail";
+import CharacterDetailSkeleton from "../../components/characterDetailSketeton/CharacterDetailSkeleton";
+
+const Detail = ({ character }: { character: Character }) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // delay in order to see the skeleton
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }, []);
+
   return (
-    <Container>
-        <BackRouteArrow text="BACK TO LIST" ></BackRouteArrow>
-        <CharacterDetail character={character}></CharacterDetail>
-    </Container>
+    <>
+      {isLoading ? (
+        <CharacterDetailSkeleton />
+      ) : (
+        <Container>
+          <BackRouteArrow text="BACK TO LIST" />
+          <CharacterDetail character={character} />
+        </Container>
+      )}
+    </>
   );
 };
 
 export default Detail;
-export  {getServerSideProps};
-
-
+export { getServerSideProps };
