@@ -1,18 +1,18 @@
+import React from "react";
 import { useState, useEffect } from "react";
-import { Response } from "src/modules/models/response";
+import CharacterCardSkeleton from "../components/characaterCardSkeleton/CharacterCardSkeleton";
+import CharacterFilter from "../components/characterFilter/characterFilter";
 import CharacterList from "../components/characterList/CharacterList";
 import Paginator from "../components/paginator/Paginator";
 import SearchBar from "../components/searchBar/SearchBar";
 import { Character } from "../modules/characters/domain/character";
+import { Response } from "src/modules/models/response";
 import PaginationAdapter from "../modules/characters/application/adapters/PaginationAdapter";
+import { RickAndMortyCharacterRepository } from "src/modules/characters/application/adapters/RickAndMortyCharacterRepository";
 import paginationService from "../modules/characters/application/services/paginationService";
 import searchService from "../modules/characters/application/services/searchService";
 import { getServerSideProps } from "./serverSideProps/getAllCharactersServerSite";
-import { RickAndMortyCharacterRepository } from "src/modules/characters/application/adapters/RickAndMortyCharacterRepository";
-import React from "react";
-import CharacterCardSkeleton from "@/components/characaterCardSkeleton/CharacterCardSkeleton";
 
-import CharacterFilter from "@/components/characterFilter/characterFilter";
 
 const Home = ({ response }: { response: Response }) => {
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -28,11 +28,13 @@ const Home = ({ response }: { response: Response }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // delay in order to see the skeleton
+    // delay just to show the skeleton∑
     setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 500);
   }, [isLoading]);
+
+  const characterOrderRepository = new RickAndMortyCharacterRepository();
 
   const paginationAdapter = new PaginationAdapter(
     setCharacters,
@@ -42,10 +44,7 @@ const Home = ({ response }: { response: Response }) => {
     setTotalPages,
     setCurrentPage
   );
-  const characterOrderRepository = new RickAndMortyCharacterRepository(
-    characters
-  );
-
+  
   useEffect(() => {
     setAllCharacters(response.characters);
     setCharacters(response.characters);
@@ -95,7 +94,6 @@ const Home = ({ response }: { response: Response }) => {
     setIsSearching(false);
     setIsLoading(true);
     if (previousePageUrl) {
-      setCharacters([]);
       paginationService.handlePrevious(
         previousePageUrl,
         currentPage,
@@ -129,7 +127,6 @@ const Home = ({ response }: { response: Response }) => {
         handleOrderByName={handleOrderByName}
         handleOrderBySpecie={handleOrderBySpecie}
       />
-
         {isLoading ? (
           <CharacterCardSkeleton />
         ) : (
@@ -160,6 +157,7 @@ export { getServerSideProps };
 // improve variables names
 // after open model navegate to character detail
 
+
 //NICO
 //DONE
 //Create  squeleton index and detailf
@@ -168,3 +166,12 @@ export { getServerSideProps };
 
 //TODO
 //Test searchService andvos compo*/
+
+
+//DAVID
+//TODO
+//TEST  ORDERSEARCH, SKELETON, FORMATDATE, getCharacterById, getAllCharacters <-- PRIORIDAD
+//TRADUCCIONES 
+//ADD DEAD OR ALIVE AND ITS FILTER
+//MODO noche usando context.provider -> SAVE STATE IN LOCAL STORAGE
+//COMPOMENTS -> ADD FOLDERS LIKE CHARACTER

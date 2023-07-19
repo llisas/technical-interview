@@ -2,12 +2,7 @@ import CharacterRepository from "../../domain/CharacterRepositiry";
 import { Character } from "../../domain/character";
 
 export class RickAndMortyCharacterRepository implements CharacterRepository {
-  private characters: Character[];
-
-  constructor(characters: Character[]) {
-    this.characters = characters;
-  }
-
+  
   orderCharactersByName(characters: Character[]): Character[] {
     return characters.slice().sort((a, b) => {
       const nameA = a.name.toLowerCase();
@@ -35,7 +30,7 @@ export class RickAndMortyCharacterRepository implements CharacterRepository {
   }
 
   orderCharactersByNameAndSpecie(characters: Character[]): Character[] {
-    const groupedCharacters: { [key: string]: Character[] } = characters.reduce((obj, character) => {
+    const groupedCharacters: { [key: string]: Character[] } = characters.reduce((obj: { [key: string]: Character[] }, character) => {
       if (!obj[character.species]) {
         obj[character.species] = [];
       }
@@ -45,9 +40,7 @@ export class RickAndMortyCharacterRepository implements CharacterRepository {
     for (const species in groupedCharacters) {
       groupedCharacters[species].sort((a, b) => a.name.localeCompare(b.name));
     }
-
     const sortedCharacters: Character[] = Object.values(groupedCharacters).flat();
-
     return sortedCharacters;
   }
 }
