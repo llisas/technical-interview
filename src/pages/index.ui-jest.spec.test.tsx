@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import Main from "./index";
 import {responseMock} from "./__mockData__/responseMockData";
-import Paginator from "@/components/paginator/Paginator";
+import Paginator from "../components/paginator/Paginator";
 
 describe("Main", () => {
   test("should render Home component", () => {

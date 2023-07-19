@@ -1,13 +1,20 @@
-import {SkeletonCardContainer,SkeletonImageWrapper, SkeletonImage, SkeletonName, SkeletonContainer} from "./CharacterCardSkeleton.styles"
+import React from "react";
+import {
+  SkeletonCardContainer,
+  SkeletonImageWrapper,
+  SkeletonImage,
+  SkeletonName,
+  SkeletonContainer,
+} from "./CharacterCardSkeleton.styles";
 
 const SkeletonComponent = () => {
   return (
-    <SkeletonCardContainer>
-      <SkeletonImageWrapper>
-        <SkeletonImage />
+    <SkeletonCardContainer data-testid="skeleton-component">
+      <SkeletonImageWrapper data-testid="skeleton-image-wrapper">
+        <SkeletonImage data-testid="skeleton-image" />
       </SkeletonImageWrapper>
-      <SkeletonName />
-      <SkeletonName />
+      <SkeletonName data-testid="skeleton-name" />
+      <SkeletonName data-testid="skeleton-name" />
     </SkeletonCardContainer>
   );
 };

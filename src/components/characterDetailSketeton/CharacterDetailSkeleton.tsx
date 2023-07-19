@@ -4,21 +4,21 @@ import {
   ImageSkeleton,
   DescriptionSkeleton,
   NavContainerSkeleton,
-} from "./CharacterDetail.styles";
+} from "./CharacterDetailSkeleton.styles";
 
 const DetailSkeleton = () => {
   return (
     <>
-      <ContainerSkeleton>
-        <TitleSkeleton />
-        <ImageSkeleton />
-        <DescriptionSkeleton />
-        <DescriptionSkeleton />
-        <DescriptionSkeleton />
-        <DescriptionSkeleton />
-        <DescriptionSkeleton />
+      <ContainerSkeleton data-testid="container-skeleton">
+        <TitleSkeleton data-testid="title-skeleton" />
+        <ImageSkeleton data-testid="image-skeleton" />
+        <DescriptionSkeleton data-testid="description-skeleton" />
+        <DescriptionSkeleton data-testid="description-skeleton" />
+        <DescriptionSkeleton data-testid="description-skeleton" />
+        <DescriptionSkeleton data-testid="description-skeleton" />
+        <DescriptionSkeleton data-testid="description-skeleton" />
       </ContainerSkeleton>
-      <NavContainerSkeleton />
+      <NavContainerSkeleton data-testid="nav-container-skeleton" />
     </>
   );
 };

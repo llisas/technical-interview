@@ -6,13 +6,12 @@ import CharacterList from "../components/characterList/CharacterList";
 import Paginator from "../components/paginator/Paginator";
 import SearchBar from "../components/searchBar/SearchBar";
 import { Character } from "../modules/characters/domain/character";
-import { Response } from "src/modules/models/response";
+import { Response } from "../modules/models/response";
 import PaginationAdapter from "../modules/characters/application/adapters/PaginationAdapter";
-import { RickAndMortyCharacterRepository } from "src/modules/characters/application/adapters/RickAndMortyCharacterRepository";
+import { RickAndMortyCharacterRepository } from "../modules/characters/application/adapters/RickAndMortyCharacterRepository";
 import paginationService from "../modules/characters/application/services/paginationService";
 import searchService from "../modules/characters/application/services/searchService";
 import { getServerSideProps } from "./serverSideProps/getAllCharactersServerSite";
-
 
 const Home = ({ response }: { response: Response }) => {
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -44,7 +43,7 @@ const Home = ({ response }: { response: Response }) => {
     setTotalPages,
     setCurrentPage
   );
-  
+
   useEffect(() => {
     setAllCharacters(response.characters);
     setCharacters(response.characters);
@@ -122,15 +121,19 @@ const Home = ({ response }: { response: Response }) => {
       <div data-testid="home-component">
         <SearchBar onChange={handleSearchChange} />
         <CharacterFilter
-        isOrderByName={isOrderByName}
-        isOrderBySpecie={isOrderBySpecie}
-        handleOrderByName={handleOrderByName}
-        handleOrderBySpecie={handleOrderBySpecie}
-      />
+          isOrderByName={isOrderByName}
+          isOrderBySpecie={isOrderBySpecie}
+          handleOrderByName={handleOrderByName}
+          handleOrderBySpecie={handleOrderBySpecie}
+        />
         {isLoading ? (
           <CharacterCardSkeleton />
         ) : (
-          <CharacterList characters={characters} isSearching={isSearching} />
+          <CharacterList
+            characters={characters}
+            isSearching={isSearching}
+          
+          />
         )}
 
         {characters.length > 0 && (
@@ -157,7 +160,6 @@ export { getServerSideProps };
 // improve variables names
 // after open model navegate to character detail
 
-
 //NICO
 //DONE
 //Create  squeleton index and detailf
@@ -167,11 +169,10 @@ export { getServerSideProps };
 //TODO
 //Test searchService andvos compo*/
 
-
 //DAVID
 //TODO
 //TEST  ORDERSEARCH, SKELETON, FORMATDATE, getCharacterById, getAllCharacters <-- PRIORIDAD
-//TRADUCCIONES 
+//TRADUCCIONES
 //ADD DEAD OR ALIVE AND ITS FILTER
 //MODO noche usando context.provider -> SAVE STATE IN LOCAL STORAGE
 //COMPOMENTS -> ADD FOLDERS LIKE CHARACTER
