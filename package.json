@@ -5,6 +5,7 @@
     "build": "next build",
     "start": "next start",
     "test": "jest",
+    "test:failures": "jest --onlyFailures",
     "test:ui-jest": "jest --config=\"./jest.config.js\" --testPathPattern=\".*ui-jest\\.spec\\..*\" --testEnvironment=\"jsdom\"",
     "test:unit": "jest --config=\"./jest.config.js\" --testPathPattern=\".*unit\\.spec\\..*\" --testEnvironment=\"jsdom\" --env=node ",
     "test:ci": "jest --ci"

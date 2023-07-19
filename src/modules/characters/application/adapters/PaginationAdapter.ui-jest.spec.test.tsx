@@ -9,6 +9,7 @@ describe("PaginationAdapter", () => {
   let setPreviousPageUrl: jest.Mock;
   let setTotalPages: jest.Mock;
   let setCurrentPage: jest.Mock;
+  let setPreOrderCharacters: jest.Mock;
 
   beforeEach(() => {
     setCharacters = jest.fn();
@@ -16,11 +17,13 @@ describe("PaginationAdapter", () => {
     setPreviousPageUrl = jest.fn();
     setTotalPages = jest.fn();
     setCurrentPage = jest.fn();
+    setPreOrderCharacters = jest.fn();
   });
 
   it("should set pagination data correctly", () => {
     const adapter = new PaginationAdapter(
       setCharacters,
+      setPreOrderCharacters,
       setNextPageUrl,
       setPreviousPageUrl,
       setTotalPages,
@@ -37,6 +40,7 @@ describe("PaginationAdapter", () => {
   it("should update paginator with valid data", () => {
     const adapter = new PaginationAdapter(
       setCharacters,
+      setPreOrderCharacters,
       setNextPageUrl,
       setPreviousPageUrl,
       setTotalPages,
@@ -51,6 +55,7 @@ describe("PaginationAdapter", () => {
   it("should update current page correctly", () => {
     const adapter = new PaginationAdapter(
       setCharacters,
+      setPreOrderCharacters,
       setNextPageUrl,
       setPreviousPageUrl,
       setTotalPages,
