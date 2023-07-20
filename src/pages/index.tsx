@@ -1,10 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import CharacterCardSkeleton from "../components/characaterCardSkeleton/CharacterCardSkeleton";
-import CharacterFilter from "../components/characterFilter/CharacterFilter";
-import CharacterList from "../components/characterList/CharacterList";
-import Paginator from "../components/paginator/Paginator";
-import SearchBar from "../components/searchBar/SearchBar";
+import CharacterCardSkeleton from "../components/character/characaterCardSkeleton/CharacterCardSkeleton";
+import CharacterFilter from "../components/character/characterFilter/CharacterFilter";
+import CharacterList from "../components/character/characterList/CharacterList";
+import Paginator from "../components/ui/paginator/Paginator";
+import SearchBar from "../components/ui/searchBar/SearchBar";
 import { Character } from "../modules/characters/domain/character";
 import { Response } from "../modules/models/response";
 import PaginationAdapter from "../modules/characters/application/adapters/PaginationAdapter";

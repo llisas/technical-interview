@@ -1,7 +1,7 @@
 import { useState } from "react";
 import React from "react";
-import ToggleButton from "../toogleButton/ToggleButton";
-import { CenteredDiv } from "./characterFilter.styles";
+import ToggleButton from "../../ui/toogleButton/ToggleButton";
+import { CenteredDiv } from "./CharacterFilter.styles";
 
 interface CharacterFilterProps {
   isOrderByName: boolean;

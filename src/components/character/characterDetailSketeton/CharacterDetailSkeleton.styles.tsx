@@ -44,8 +44,8 @@ export const TitleSkeleton = styled.div`
 `;
 
 export const ImageSkeleton = styled.div`
-  width:450px;
-  height: 450px;
+  width:500px;
+  height: 500px;
   border-radius: 50%;
   background-color: #ccc;
   margin-bottom: 16px;

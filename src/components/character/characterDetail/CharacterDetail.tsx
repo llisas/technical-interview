@@ -1,12 +1,12 @@
 import React from "react";
-import { Character } from "../../modules/characters/domain/character";
+import { Character } from "../../../modules/characters/domain/character";
 import {
   Image,
   CircleImage,
   Description,
   Title,
 } from "./CharacterDetail.styles";
-import { formatDate } from "../../modules/utils/dateUtils";
+import useDateUtils from "@/components/helpers/customHooks/useDateUtils";
 interface CharacterDetailProps {
   character: Character;
 }
@@ -14,6 +14,7 @@ interface CharacterDetailProps {
 const CharacterDetail: React.FunctionComponent<CharacterDetailProps> = ({
   character,
 }) => {
+  const { formatDate } = useDateUtils();
   return (
     <>
       <Title>{character.name}</Title>

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Character } from "../../modules/characters/domain/character";
+import { Character } from "../../../modules/characters/domain/character";
 import CharacterCard from "../charaterCard/CharacterCard";
 import CharacterModal from "../characterModal/CharacterModal";
 import { CharacterListContainer, EmptyMessage } from "./CharacterList.styles";
-import useCharacterModal from "../../modules/characters/application/useCase/customHooks/useCharacterModal";
+import useCharacterModal from "../../../modules/characters/application/useCase/customHooks/useCharacterModal";
 
 interface CharacterListProps {
   characters: Character[] | null | undefined;
