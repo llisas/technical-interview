@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import Paginator from "@/components/paginator/Paginator";
+import Paginator from "@/components/ui/paginator/Paginator";
 
 
 describe("Paginator", () => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Title, Image, CircleImage, Description } from "./id.styles";
-import BackRouteArrow from "../../components/backRouteArrow/BackRouteArrow";
+import BackRouteArrow from "../../components/ui/backRouteArrow/BackRouteArrow";
 import { Character } from "src/modules/characters/domain/character";
 import { getServerSideProps } from "../serverSideProps/getCharacterById";
 import CharacterDetail from "@/components/character/characterDetail/CharacterDetail";
