@@ -21,11 +21,13 @@ const SkeletonComponent = () => {
 
 const SkeletonGrid = () => {
   return (
-    <SkeletonContainer>
+    <div data-testid="character-skeleton">
+    <SkeletonContainer >
       {[...Array(20)].map((_, index) => (
         <SkeletonComponent key={index} />
       ))}
     </SkeletonContainer>
+    </div>
   );
 };
 

@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, act} from "@testing-library/react";
 import Main from "./index";
 import {responseMock} from "./__mockData__/responseMockData";
 import Paginator from "../components/paginator/Paginator";
@@ -16,13 +16,18 @@ describe("Main", () => {
     expect(searchBar).toBeInTheDocument();
   });
 
-  it("Should render CharacterList", () => {
-    render(<Main  response={responseMock}/>);
-    const characterList = screen.getByTestId("character-list");
+  it("Should render CharacterList or skeleton", async () => {
+    render(<Main response={responseMock} />);
+    const characterSkeleton = screen.queryByTestId("character-skeleton");
+    expect(characterSkeleton).toBeInTheDocument();
+    act(() => {
+      jest.advanceTimersByTime(1000); 
+    });
+    const characterList = await screen.findByTestId("character-list");
+    expect(characterSkeleton).not.toBeInTheDocument();
     expect(characterList).toBeInTheDocument();
   });
-
-
+  
   it("Should render Paginator", () => {
     const currentPage = 1;
     const totalPages = 10;

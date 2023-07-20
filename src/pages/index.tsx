@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import CharacterCardSkeleton from "../components/characaterCardSkeleton/CharacterCardSkeleton";
-import CharacterFilter from "../components/characterFilter/characterFilter";
+import CharacterFilter from "../components/characterFilter/CharacterFilter";
 import CharacterList from "../components/characterList/CharacterList";
 import Paginator from "../components/paginator/Paginator";
 import SearchBar from "../components/searchBar/SearchBar";
@@ -132,7 +132,6 @@ const Home = ({ response }: { response: Response }) => {
           <CharacterList
             characters={characters}
             isSearching={isSearching}
-          
           />
         )}
 
@@ -170,8 +169,11 @@ export { getServerSideProps };
 //Test searchService andvos compo*/
 
 //DAVID
-//TODO
+//DONE 
 //TEST  ORDERSEARCH, SKELETON, FORMATDATE, getCharacterById, getAllCharacters <-- PRIORIDAD
+
+
+//TODO
 //TRADUCCIONES
 //ADD DEAD OR ALIVE AND ITS FILTER
 //MODO noche usando context.provider -> SAVE STATE IN LOCAL STORAGE
