@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import CharacterList from "@/components/characterList/CharacterList";
+import CharacterList from "@/components/character/characterList/CharacterList";
 import {
   mockCharacter,
   mockCharacters,

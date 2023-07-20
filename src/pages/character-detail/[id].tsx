@@ -3,8 +3,8 @@ import { Container, Title, Image, CircleImage, Description } from "./id.styles";
 import BackRouteArrow from "../../components/backRouteArrow/BackRouteArrow";
 import { Character } from "src/modules/characters/domain/character";
 import { getServerSideProps } from "../serverSideProps/getCharacterById";
-import CharacterDetail from "@/components/characterDetail/CharacterDetail";
-import CharacterDetailSkeleton from "../../components/characterDetailSketeton/CharacterDetailSkeleton";
+import CharacterDetail from "@/components/character/characterDetail/CharacterDetail";
+import CharacterDetailSkeleton from "../../components/character/characterDetailSketeton/CharacterDetailSkeleton";
 
 const Detail = ({ character }: { character: Character }) => {
   const [isLoading, setIsLoading] = useState(true);

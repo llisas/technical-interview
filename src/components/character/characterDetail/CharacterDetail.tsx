@@ -1,12 +1,12 @@
 import React from "react";
-import { Character } from "../../modules/characters/domain/character";
+import { Character } from "../../../modules/characters/domain/character";
 import {
   Image,
   CircleImage,
   Description,
   Title,
 } from "./CharacterDetail.styles";
-import { formatDate } from "../../modules/utils/dateUtils";
+import { formatDate } from "../../../modules/utils/dateUtils";
 interface CharacterDetailProps {
   character: Character;
 }

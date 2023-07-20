@@ -1,5 +1,5 @@
 import React from "react";
-import { Character } from "../../modules/characters/domain/character";
+import { Character } from "../../../modules/characters/domain/character";
 import {
   StyledModal,
   CloseButton,
