@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const CharacterCardContainer = styled.div`
-  background-color: #f9faf7;
+  background-color: #E6E6E6;
   border-radius: 15px;
   display: flex;
   flex-direction: column;

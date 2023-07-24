@@ -1,8 +1,17 @@
 import "@/styles/global.css";
+import "@/styles/global.dark.css";
 import type { AppProps } from "next/app";
 import Modal from "react-modal";
+import DarkMode from "../components/ui/darkMode/DarkMode";
 Modal.setAppElement("#__next");
 
+
 export default function rickyMortyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+
+  return (
+    <>
+      <DarkMode /> 
+      <Component {...pageProps} />
+    </>
+  );
 }

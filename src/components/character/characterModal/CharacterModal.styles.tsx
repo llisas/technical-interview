@@ -1,14 +1,19 @@
 import styled from "@emotion/styled";
 import ReactModal from "react-modal";
 
-export const StyledModal = styled(ReactModal)`
+interface StyledModalProps {
+  isDarkMode: boolean;
+}
+
+export const StyledModal = styled(ReactModal)<StyledModalProps>`
+  width: 500px;
   width: 500px;
   height: auto;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #F9FAF7;
+  background-color: ${(props) => (props.isDarkMode ? "#BFBFBF" : "#F9FAF7")};
   border-radius: 15px;
   &.modal-overlay {
     background-color: rgba(0, 0, 0, 0.5);
@@ -80,12 +85,11 @@ export const InformationContainer = styled.div`
 
   a.info-link {
     cursor: pointer;
-    color: burlywood;
+    color: #999999;
     text-decoration: none;
     transition: color 0.3s;
-
     &:hover {
-      color:#a25b00;
+      color: #777777; 
     }
   }
 

@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 export const SearchBarContainer = styled.div`
+   
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,6 +12,7 @@ export const SearchContainer = styled.div`
 `;
 
 export const SearchInput = styled.input`
+  background-color:#fafafa;
   margin-top: 50px;
   width: 100%;
   max-width: 400px;

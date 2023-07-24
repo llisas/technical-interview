@@ -33,6 +33,7 @@ const CharacterModal = ({
       isOpen={isOpen}
       onRequestClose={onClose}
       overlayClassName="modal-overlay"
+      isDarkMode={localStorage.getItem("darkMode") === "true"}
     >
       <CloseButton data-testid="close-button" onClick={onClose}>
         X
