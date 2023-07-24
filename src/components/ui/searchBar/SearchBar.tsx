@@ -1,7 +1,7 @@
 import React from "react";
 import { SearchBarContainer, SearchContainer, SearchInput } from './SearchBar.styles';
 import useSearchBar from "../../../modules/characters/application/useCase/customHooks/useSearchBar";
-
+import { useDarkModeContext } from "src/context/darkMode/DarkModeContext";
 interface SearchBarProps {
   onChange: (searchTerm: string) => void;
 }
@@ -9,6 +9,8 @@ interface SearchBarProps {
 const SearchBar = ({ onChange }: SearchBarProps) => {
   const { searchTerm: inputValue, handleInputChange } = useSearchBar(onChange);
 
+  const { isDarkModeContext } = useDarkModeContext();
+  console.log("ESTA DARKMO DEACTIVO",isDarkModeContext)
   return (
     <SearchBarContainer data-testid="search-bar">
       <SearchContainer>
@@ -18,6 +20,7 @@ const SearchBar = ({ onChange }: SearchBarProps) => {
           value={inputValue}
           onChange={handleInputChange}
           placeholder="Search characters..."
+          isDarkMode= {isDarkModeContext}
         />
       </SearchContainer>
     </SearchBarContainer>
