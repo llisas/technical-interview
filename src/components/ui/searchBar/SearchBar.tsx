@@ -8,9 +8,7 @@ interface SearchBarProps {
 
 const SearchBar = ({ onChange }: SearchBarProps) => {
   const { searchTerm: inputValue, handleInputChange } = useSearchBar(onChange);
-
   const { isDarkModeContext } = useDarkModeContext();
-  console.log("ESTA DARKMODE ACTIVO",isDarkModeContext)
   return (
     <SearchBarContainer data-testid="search-bar">
       <SearchContainer>
