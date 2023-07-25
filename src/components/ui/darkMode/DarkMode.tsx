@@ -19,7 +19,7 @@ const DarkMode = () => {
 
   useEffect(() => {
     localStorage.setItem("darkMode", isDarkModeContext.toString());
-    //document.body.classList.toggle("dark-mode", isDarkModeContext);
+    document.body.classList.toggle("dark-mode", isDarkModeContext);
   }, [isDarkModeContext]);
 
   return (
