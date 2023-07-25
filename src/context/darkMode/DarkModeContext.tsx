@@ -1,3 +1,4 @@
+// DarkModeContext.tsx
 import React, {
   createContext,
   useState,
@@ -29,12 +30,14 @@ export function DarkModeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const storedMode = localStorage.getItem("darkMode");
-    if (storedMode) {
+    if (storedMode === "true") {
       setIsDarkModeContext(true);
-    } else {
-      setIsDarkModeContext(false);
     }
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("darkMode", isDarkModeContext.toString());
+  }, [isDarkModeContext]);
 
   return (
     <DarkModeContext.Provider value={{ isDarkModeContext, toggleDarkMode }}>
