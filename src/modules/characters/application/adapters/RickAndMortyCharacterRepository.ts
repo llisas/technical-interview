@@ -62,6 +62,51 @@ export class RickAndMortyCharacterRepository implements CharacterRepository {
     return sortedCharacters;
   }
  
- 
+  orderCharactersBySpecieAndStatus(characters: Character[]): Character[] {
+    // Ordenar por especie y estado
+    const alive: Character[] = [];
+    const dead: Character[] = [];
+    const unknown: Character[] = [];
+
+    characters.forEach((character) => {
+      if (character.status === "Alive") {
+        alive.push(character);
+      } else if (character.status === "Dead") {
+        dead.push(character);
+      } else {
+        unknown.push(character);
+      }
+    });
+
+    return [
+      ...alive.sort((a, b) => a.species.localeCompare(b.species)),
+      ...dead.sort((a, b) => a.species.localeCompare(b.species)),
+      ...unknown.sort((a, b) => a.species.localeCompare(b.species)),
+    ];
+  }
+
+  orderCharactersByNameAndStatus(characters: Character[]): Character[] {
+    const alive: Character[] = [];
+    const dead: Character[] = [];
+    const unknown: Character[] = [];
+
+    characters.forEach((character) => {
+      if (character.status === "Alive") {
+        alive.push(character);
+      } else if (character.status === "Dead") {
+        dead.push(character);
+      } else {
+        unknown.push(character);
+      }
+    });
+
+    return [
+      ...alive.sort((a, b) => a.name.localeCompare(b.name)),
+      ...dead.sort((a, b) => a.name.localeCompare(b.name)),
+      ...unknown.sort((a, b) => a.name.localeCompare(b.name)),
+    ];
+  }
 
 }
+
+

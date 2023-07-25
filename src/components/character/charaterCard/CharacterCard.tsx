@@ -19,11 +19,11 @@ const CharacterCard = ({ character, onClick }: CharacterCardProps) => {
       <CharacterImageWrapper>
         <CharacterImage src={character.image} alt={character.image} />
       </CharacterImageWrapper>
-      <CharacterName>{character.name}</CharacterName>
-      <span>{character.species}</span>
+      <CharacterName>{character.name.toUpperCase()}</CharacterName>
+      <span>{character.species.toUpperCase()}</span>
       <div style={{ display: "flex", alignItems: "center" }}>
         <StatusCircle status={character.status} />
-        <span>{character.status}</span>
+        <span>{character.status.toUpperCase()}</span>
       </div>
      
     </CharacterCardContainer>

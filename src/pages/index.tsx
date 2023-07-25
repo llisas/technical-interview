@@ -8,10 +8,10 @@ import SearchBar from "../components/ui/searchBar/SearchBar";
 import { Character } from "../modules/characters/domain/character";
 import { Response } from "../modules/models/response";
 import PaginationAdapter from "../modules/characters/application/adapters/PaginationAdapter";
-import { RickAndMortyCharacterRepository } from "../modules/characters/application/adapters/RickAndMortyCharacterRepository";
 import paginationService from "../modules/characters/application/services/paginationService";
 import searchService from "../modules/characters/application/services/searchService";
 import { getServerSideProps } from "./serverSideProps/getAllCharactersServerSite";
+import { orderCharacters } from "src/modules/characters/application/services/characterOrder";
 
 const Home = ({ response }: { response: Response }) => {
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -24,7 +24,7 @@ const Home = ({ response }: { response: Response }) => {
   const [isSearching, setIsSearching] = useState(false);
   const [isOrderByName, setisOrderByName] = useState(false);
   const [isOrderBySpecie, setIsOrderBySpecie] = useState(false);
-  const [isOrderByStatus,setIsOrderByStatus] = useState(false);
+  const [isOrderByStatus, setIsOrderByStatus] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -33,8 +33,6 @@ const Home = ({ response }: { response: Response }) => {
       setIsLoading(false);
     }, 500);
   }, [isLoading]);
-
-  const characterOrderRepository = new RickAndMortyCharacterRepository();
 
   const paginationAdapter = new PaginationAdapter(
     setCharacters,
@@ -54,25 +52,18 @@ const Home = ({ response }: { response: Response }) => {
   }, [response]);
 
   useEffect(() => {
-    if (isOrderBySpecie && isOrderByName) {
+    if (characters.length > 0) {
       setCharacters(
-        characterOrderRepository.orderCharactersByNameAndSpecie(characters)
-      );
-    }else if (isOrderByStatus) {
-      setCharacters(
-        characterOrderRepository.orderCharactersByStatus(characters)
+        orderCharacters(
+          preOrderCharacters,
+          characters,
+          isOrderBySpecie,
+          isOrderByName,
+          isOrderByStatus
+        )
       );
     }
-    else if (isOrderBySpecie) {
-      setCharacters(
-        characterOrderRepository.orderCharactersBySpecies(characters)
-      );
-    } else if (isOrderByName) {
-      setCharacters(characterOrderRepository.orderCharactersByName(characters));
-    } else {
-      setCharacters(preOrderCharacters);
-    }
-  }, [isOrderBySpecie, isOrderByName,isOrderByStatus, preOrderCharacters]);
+  }, [isOrderBySpecie, isOrderByName, isOrderByStatus, preOrderCharacters]);
 
   const handleSearchChange = async (inputSearchTerm: string) => {
     setIsSearching(true);
@@ -113,9 +104,9 @@ const Home = ({ response }: { response: Response }) => {
   const handleOrderBySpecie = () => {
     setIsOrderBySpecie(!isOrderBySpecie);
   };
-  const handleOrderByStatus = () =>{
-    setIsOrderByStatus(!isOrderByStatus)
-  }
+  const handleOrderByStatus = () => {
+    setIsOrderByStatus(!isOrderByStatus);
+  };
 
   const resetToAllCharacters = () => {
     setCharacters(allCharacters);
@@ -131,18 +122,15 @@ const Home = ({ response }: { response: Response }) => {
         <CharacterFilter
           isOrderByName={isOrderByName}
           isOrderBySpecie={isOrderBySpecie}
-          isOrderByStatus = {isOrderByStatus}
+          isOrderByStatus={isOrderByStatus}
           handleOrderByName={handleOrderByName}
           handleOrderBySpecie={handleOrderBySpecie}
-          handleOrderByStatus = {handleOrderByStatus}
+          handleOrderByStatus={handleOrderByStatus}
         />
         {isLoading ? (
           <CharacterCardSkeleton />
         ) : (
-          <CharacterList
-            characters={characters}
-            isSearching={isSearching}
-          />
+          <CharacterList characters={characters} isSearching={isSearching} />
         )}
 
         {characters.length > 0 && (
@@ -174,17 +162,15 @@ export { getServerSideProps };
 //Create  squeleton index and detailf
 //Divide components character detail, remove data emphy loke Summer Smith detail
 //Create filter to order from a to z name or specie
-
-//TODO
 //Test searchService andvos compo*/
+//TODO
 
 //DAVID
-//DONE 
+//DONE
 //TEST  ORDERSEARCH, SKELETON, FORMATDATE, getCharacterById, getAllCharacters <-- PRIORIDAD
-
-
-//TODO
-//TRADUCCIONES
 //ADD DEAD OR ALIVE AND ITS FILTER
 //MODO noche usando context.provider -> SAVE STATE IN LOCAL STORAGE
 //COMPOMENTS -> ADD FOLDERS LIKE CHARACTER
+
+//TODO
+//TRADUCCIONES

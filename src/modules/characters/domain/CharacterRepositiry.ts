@@ -5,5 +5,4 @@ import {Character} from "./character"
     orderCharactersBySpecies(characters: Character[]): Character[];
     orderCharactersByNameAndSpecie(characters: Character[]): Character[];
     orderCharactersByStatus(characters: Character[]): Character[];
-    // we can add more filters
   }
