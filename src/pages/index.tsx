@@ -58,7 +58,12 @@ const Home = ({ response }: { response: Response }) => {
       setCharacters(
         characterOrderRepository.orderCharactersByNameAndSpecie(characters)
       );
-    } else if (isOrderBySpecie) {
+    }else if (isOrderByStatus) {
+      setCharacters(
+        characterOrderRepository.orderCharactersByStatus(characters)
+      );
+    }
+    else if (isOrderBySpecie) {
       setCharacters(
         characterOrderRepository.orderCharactersBySpecies(characters)
       );
@@ -67,7 +72,7 @@ const Home = ({ response }: { response: Response }) => {
     } else {
       setCharacters(preOrderCharacters);
     }
-  }, [isOrderBySpecie, isOrderByName, preOrderCharacters]);
+  }, [isOrderBySpecie, isOrderByName,isOrderByStatus, preOrderCharacters]);
 
   const handleSearchChange = async (inputSearchTerm: string) => {
     setIsSearching(true);

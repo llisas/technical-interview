@@ -4,5 +4,6 @@ import {Character} from "./character"
     orderCharactersByName(characters: Character[]): Character[];
     orderCharactersBySpecies(characters: Character[]): Character[];
     orderCharactersByNameAndSpecie(characters: Character[]): Character[];
+    orderCharactersByStatus(characters: Character[]): Character[];
     // we can add more filters
   }

@@ -29,6 +29,24 @@ export class RickAndMortyCharacterRepository implements CharacterRepository {
     return sorted;
   }
 
+  orderCharactersByStatus(characters: Character[]): Character[] {
+    const alive: Character[] = [];
+    const dead: Character[] = [];
+    const unknown: Character[] = [];
+  
+    characters.forEach((character) => {
+      if (character.status === "Alive") {
+        alive.push(character);
+      } else if (character.status === "Dead") {
+        dead.push(character);
+      } else {
+        unknown.push(character);
+      }
+    });
+  
+    return [...alive, ...dead, ...unknown];
+  }
+  
   orderCharactersByNameAndSpecie(characters: Character[]): Character[] {
     const groupedCharacters: { [key: string]: Character[] } = characters.reduce((obj: { [key: string]: Character[] }, character) => {
       if (!obj[character.species]) {
@@ -43,4 +61,7 @@ export class RickAndMortyCharacterRepository implements CharacterRepository {
     const sortedCharacters: Character[] = Object.values(groupedCharacters).flat();
     return sortedCharacters;
   }
+ 
+ 
+
 }
