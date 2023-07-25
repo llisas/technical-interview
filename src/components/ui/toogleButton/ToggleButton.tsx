@@ -10,9 +10,9 @@ interface ToggleButtonProps {
 function ToggleButton({ name, active, onToggle }: ToggleButtonProps) {
   return (
     <>
-    <ToggleButtonLabel>{name}</ToggleButtonLabel>
     <ToggleButtonStyled active={active} onClick={onToggle}>
     </ToggleButtonStyled>
+    <ToggleButtonLabel>{name}</ToggleButtonLabel>
     </>
   );
 }

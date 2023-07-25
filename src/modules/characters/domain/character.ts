@@ -3,7 +3,7 @@ import { Location } from "./location";
 export type Character =  { 
     id: number;
     name: string;
-    status: string;
+    status: "Alive" | "Dead";
     species: string;
     type: string;
     gender: string;

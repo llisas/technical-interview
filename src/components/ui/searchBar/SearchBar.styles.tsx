@@ -4,7 +4,6 @@ interface SearchInputProps {
   isDarkMode: boolean;
 }
 
-
 export const SearchBarContainer = styled.div`
   display: flex;
   flex-direction: column;

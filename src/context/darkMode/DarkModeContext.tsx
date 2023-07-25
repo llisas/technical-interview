@@ -29,7 +29,6 @@ export function DarkModeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const storedMode = localStorage.getItem("darkMode");
-    console.log;
     if (storedMode) {
       setIsDarkModeContext(true);
     } else {

@@ -24,10 +24,11 @@ const Home = ({ response }: { response: Response }) => {
   const [isSearching, setIsSearching] = useState(false);
   const [isOrderByName, setisOrderByName] = useState(false);
   const [isOrderBySpecie, setIsOrderBySpecie] = useState(false);
+  const [isOrderByStatus,setIsOrderByStatus] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // delay just to show the skeleton∑
+    // delay just to show the skeleton
     setTimeout(() => {
       setIsLoading(false);
     }, 500);
@@ -104,10 +105,12 @@ const Home = ({ response }: { response: Response }) => {
   const handleOrderByName = () => {
     setisOrderByName(!isOrderByName);
   };
-
   const handleOrderBySpecie = () => {
     setIsOrderBySpecie(!isOrderBySpecie);
   };
+  const handleOrderByStatus = () =>{
+    setIsOrderByStatus(!isOrderByStatus)
+  }
 
   const resetToAllCharacters = () => {
     setCharacters(allCharacters);
@@ -123,8 +126,10 @@ const Home = ({ response }: { response: Response }) => {
         <CharacterFilter
           isOrderByName={isOrderByName}
           isOrderBySpecie={isOrderBySpecie}
+          isOrderByStatus = {isOrderByStatus}
           handleOrderByName={handleOrderByName}
           handleOrderBySpecie={handleOrderBySpecie}
+          handleOrderByStatus = {handleOrderByStatus}
         />
         {isLoading ? (
           <CharacterCardSkeleton />

@@ -1,11 +1,17 @@
 import styled from "@emotion/styled";
 
+type StatusCircleProps = {
+  status: "Alive" | "Dead";
+};
+
+
 export const CharacterCardContainer = styled.div`
-  background-color: #E6E6E6;
+  background-color: #e6e6e6;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; /* Center the flex items horizontally and vertically */
   cursor: pointer;
   border: 1px solid gray;
   margin-top: 10vh;
@@ -22,7 +28,7 @@ export const CharacterImage = styled.img`
   width: 150px;
   height: 150px;
   object-fit: cover;
-  margin-top: -50%; /* Para solapar el borde superior */
+  margin-top: -50%;
 `;
 
 export const CharacterName = styled.h2`
@@ -30,4 +36,13 @@ export const CharacterName = styled.h2`
   font-size: 18px;
   font-weight: bold;
   color: grey;
+`;
+
+export const StatusCircle = styled.span<StatusCircleProps>`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-left: -5px;
+  margin-right:5px;
+  background-color: ${({ status }) => (status === "Alive" ? "green" : "red")};
 `;

@@ -5,6 +5,7 @@ import {
   CharacterImageWrapper,
   CharacterImage,
   CharacterName,
+  StatusCircle
 } from "./CharacterCard.styles";
 
 type CharacterCardProps = {
@@ -20,6 +21,11 @@ const CharacterCard = ({ character, onClick }: CharacterCardProps) => {
       </CharacterImageWrapper>
       <CharacterName>{character.name}</CharacterName>
       <span>{character.species}</span>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <StatusCircle status={character.status} />
+        <span>{character.status}</span>
+      </div>
+     
     </CharacterCardContainer>
   );
 };

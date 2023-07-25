@@ -12,7 +12,7 @@ const locationMock: Location = {
 const characterDataMock: Character = {
   id: 123,
   name: "Rick",
-  status: "alive",
+  status: "Alive",
   species: "human",
   type: "cibor",
   gender: "male",
