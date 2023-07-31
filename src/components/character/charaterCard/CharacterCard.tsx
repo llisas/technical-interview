@@ -1,5 +1,6 @@
 import React from "react";
 import { Character } from "../../../modules/characters/domain/character";
+import { useDarkModeContext } from "src/context/darkMode/DarkModeContext";
 import {
   CharacterCardContainer,
   CharacterImageWrapper,
@@ -14,19 +15,29 @@ type CharacterCardProps = {
 };
 
 const CharacterCard = ({ character, onClick }: CharacterCardProps) => {
+  const { isDarkModeContext } = useDarkModeContext();
+
   return (
-    <CharacterCardContainer onClick={onClick}>
+    <CharacterCardContainer
+      darkMode={isDarkModeContext}
+      onClick={onClick}
+      
+    >
       <CharacterImageWrapper>
         <CharacterImage src={character.image} alt={character.image} />
       </CharacterImageWrapper>
-      <CharacterName>{character.name.toUpperCase()}</CharacterName>
+      <CharacterName
+        darkMode={isDarkModeContext}
+      >
+        {character.name.toUpperCase()}
+      </CharacterName>
       <span>{character.species.toUpperCase()}</span>
       <div style={{ display: "flex", alignItems: "center" }}>
         <StatusCircle status={character.status} />
         <span>{character.status.toUpperCase()}</span>
       </div>
-     
     </CharacterCardContainer>
   );
 };
+
 export default CharacterCard;

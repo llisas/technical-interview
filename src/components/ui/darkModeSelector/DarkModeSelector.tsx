@@ -3,7 +3,7 @@ import { useDarkModeContext } from "src/context/darkMode/DarkModeContext";
 
 import ToggleScreenMode from "../toogleScreenMode/ToggleScreenMode";
 
-const DarkMode = () => {
+const DarkModeSelector = () => {
   const { isDarkModeContext, toggleDarkMode } = useDarkModeContext();
 
   useEffect(() => {
@@ -25,4 +25,4 @@ const DarkMode = () => {
   );
 };
 
-export default DarkMode;
+export default DarkModeSelector;

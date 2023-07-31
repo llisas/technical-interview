@@ -13,6 +13,7 @@ import searchService from "../modules/characters/application/services/searchServ
 import { getServerSideProps } from "./serverSideProps/getAllCharactersServerSite";
 import { orderCharacters } from "src/modules/characters/application/services/characterOrder";
 
+
 const Home = ({ response }: { response: Response }) => {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [preOrderCharacters, setPreOrderCharacters] = useState<Character[]>([]);
@@ -117,7 +118,7 @@ const Home = ({ response }: { response: Response }) => {
 
   return (
     <>
-      <div data-testid="home-component">
+ <div data-testid="home-component">
         <SearchBar onChange={handleSearchChange} />
         <CharacterFilter
           isOrderByName={isOrderByName}

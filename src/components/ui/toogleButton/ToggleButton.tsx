@@ -1,6 +1,6 @@
 import React from "react";
 import { ToggleButtonStyled, ToggleButtonLabel} from "./ToogleButton.styles";
-
+import { useDarkModeContext } from "src/context/darkMode/DarkModeContext";
 interface ToggleButtonProps {
   name: string;
   active: boolean;
@@ -8,11 +8,15 @@ interface ToggleButtonProps {
 }
 
 function ToggleButton({ name, active, onToggle }: ToggleButtonProps) {
+  const { isDarkModeContext } = useDarkModeContext();
+  
   return (
     <>
     <ToggleButtonStyled active={active} onClick={onToggle}>
     </ToggleButtonStyled>
-    <ToggleButtonLabel>{name}</ToggleButtonLabel>
+    <ToggleButtonLabel style={{ color: isDarkModeContext ? "white" : "grey" }}>
+        {name}
+      </ToggleButtonLabel>
     </>
   );
 }
