@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ToggleButton from "../../ui/toogleButton/ToggleButton";
 import { CenteredDiv } from "./CharacterFilter.styles";
 import i18n from "../../../../i18n";
-import { useTranslation } from "react-i18next"; 
+import { useTranslation } from "react-i18next";
 
 interface CharacterFilterProps {
   isOrderByName: boolean;
@@ -25,7 +25,7 @@ const CharacterFilter: React.FunctionComponent<CharacterFilterProps> = ({
   const [byNamei18n, setByNamei18n] = useState("");
   const [bySpeciei18n, setBySpeciei18n] = useState("");
   const [byStatusi18n, setByStatusi18n] = useState("");
-    
+ 
 
   useEffect(() => {
     setByNamei18n(i18n.t("orderByName").toLocaleUpperCase());
@@ -33,24 +33,22 @@ const CharacterFilter: React.FunctionComponent<CharacterFilterProps> = ({
     setByStatusi18n(i18n.t("orderByStatus").toLocaleUpperCase());
   }, []);
   useEffect(() => {
-    // Ejecutamos esta parte solo en el navegador
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       setByNamei18n(t("orderByName").toLocaleUpperCase());
       setBySpeciei18n(t("orderBySpecie").toLocaleUpperCase());
       setByStatusi18n(t("orderByStatus").toLocaleUpperCase());
     }
-  }, [t]); 
-
+  }, [t]);
 
   return (
     <CenteredDiv>
       <ToggleButton
-      name={byNamei18n}
+        name={byNamei18n}
         active={isOrderByName}
         onToggle={handleOrderByName}
       />
       <ToggleButton
-              name={bySpeciei18n}
+        name={bySpeciei18n}
         active={isOrderBySpecie}
         onToggle={handleOrderBySpecie}
       />

@@ -1,11 +1,19 @@
 import styled from "@emotion/styled";
+import { css } from "@emotion/react"; // Import the css function
 
 type StatusCircleProps = {
   status: "Alive" | "Dead";
 };
 
+type CharacterCardContainerProps = {
+  darkMode?: boolean;
+};
 
-export const CharacterCardContainer = styled.div`
+type CharacterNameProps = {
+  darkMode?: boolean;
+};
+
+export const CharacterCardContainer = styled.div<CharacterCardContainerProps>`
   background-color: #e6e6e6;
   border-radius: 15px;
   display: flex;
@@ -16,6 +24,14 @@ export const CharacterCardContainer = styled.div`
   border: 1px solid gray;
   margin-top: 10vh;
   padding: 1vh;
+
+  ${props =>
+    props.darkMode &&
+    css`
+      /* Dark mode styles */
+      background-color:#696969;
+      color: white;
+    `}
 `;
 
 export const CharacterImageWrapper = styled.div`
@@ -31,11 +47,17 @@ export const CharacterImage = styled.img`
   margin-top: -50%;
 `;
 
-export const CharacterName = styled.h2`
+export const CharacterName = styled.h2<CharacterNameProps>`
   margin-top: 15px;
   font-size: 18px;
   font-weight: bold;
   color: grey;
+
+  ${props =>
+    props.darkMode &&
+    css`
+      color: white;
+    `}
 `;
 
 export const StatusCircle = styled.span<StatusCircleProps>`
@@ -43,6 +65,6 @@ export const StatusCircle = styled.span<StatusCircleProps>`
   height: 10px;
   border-radius: 50%;
   margin-left: -5px;
-  margin-right:5px;
+  margin-right: 5px;
   background-color: ${({ status }) => (status === "Alive" ? "green" : "red")};
 `;
