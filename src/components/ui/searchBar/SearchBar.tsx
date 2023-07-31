@@ -1,7 +1,13 @@
-import React from "react";
-import { SearchBarContainer, SearchContainer, SearchInput } from './SearchBar.styles';
+import React, { useEffect, useState } from "react";
+import {
+  SearchBarContainer,
+  SearchContainer,
+  SearchInput,
+} from "./SearchBar.styles";
 import useSearchBar from "../../../modules/characters/application/useCase/customHooks/useSearchBar";
 import { useDarkModeContext } from "src/context/darkMode/DarkModeContext";
+import i18n from "../../../../i18n";
+
 interface SearchBarProps {
   onChange: (searchTerm: string) => void;
 }
@@ -9,6 +15,11 @@ interface SearchBarProps {
 const SearchBar = ({ onChange }: SearchBarProps) => {
   const { searchTerm: inputValue, handleInputChange } = useSearchBar(onChange);
   const { isDarkModeContext } = useDarkModeContext();
+  const [searchi18n, setsearchi18n] = useState("");
+  useEffect(() => {
+    setsearchi18n(i18n.t("searchCharacter"));
+  }, []);
+
   return (
     <SearchBarContainer data-testid="search-bar">
       <SearchContainer>
@@ -17,8 +28,8 @@ const SearchBar = ({ onChange }: SearchBarProps) => {
           type="text"
           value={inputValue}
           onChange={handleInputChange}
-          placeholder="Search characters..."
-          isDarkMode= {isDarkModeContext}
+          placeholder={searchi18n}
+          isDarkMode={isDarkModeContext}
         />
       </SearchContainer>
     </SearchBarContainer>
