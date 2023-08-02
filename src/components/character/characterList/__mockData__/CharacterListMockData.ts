@@ -1,8 +1,10 @@
-export const mockCharacter = {
+import { Character } from "src/modules/characters/domain/character";
+
+export const mockCharacter: Character = {
     id: 1,
-    name: "Rick",
-    status: "alive",
-    species: "human",
+    name: "RICK",
+    status: "Alive",
+    species: "HUMAN",
     type: "",
     gender: "male",
     origin: {
@@ -19,13 +21,13 @@ export const mockCharacter = {
     created: "",
   };
   
- export const mockCharacters = [
+ export const mockCharacters: Character[] = [
     mockCharacter,
     {
       id: 2,
-      name: "Morty",
-      status: "alive",
-      species: "human",
+      name: "MORTY",
+      status: "Alive",
+      species: "HUMAN",
       type: "",
       gender: "male",
       origin: {

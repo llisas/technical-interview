@@ -25,8 +25,8 @@ describe("CharacterList", () => {
       <CharacterList characters={mockCharacters} isSearching={false} />
     );
 
-    const characterName = getByText(mockCharacter.name);
-    fireEvent.click(characterName);
+    const characterContainer = getByTestId("character-card-container");
+    fireEvent.click(characterContainer);
     const characterModalTitle = getByText(mockCharacter.name);
 
     expect(characterModalTitle).toBeInTheDocument();

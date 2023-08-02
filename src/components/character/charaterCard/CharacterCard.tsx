@@ -21,7 +21,7 @@ const CharacterCard = ({ character, onClick }: CharacterCardProps) => {
     <CharacterCardContainer
       darkMode={isDarkModeContext}
       onClick={onClick}
-      
+      data-testid="character-card-container"
     >
       <CharacterImageWrapper>
         <CharacterImage src={character.image} alt={character.image} />

@@ -1,8 +1,8 @@
 import "@testing-library/jest-dom";
 import { render, fireEvent } from "@testing-library/react";
 import CharacterCard from "./CharacterCard";
-import { Character } from "src/modules/characters/domain/character";
-import { Location } from "src/modules/characters/domain/location";
+import { Character } from "../../../modules/characters/domain/character";
+import { Location } from "../../..//modules/characters/domain/location";
 
 const mockOnClick = jest.fn();
 const locationMock: Location = {
