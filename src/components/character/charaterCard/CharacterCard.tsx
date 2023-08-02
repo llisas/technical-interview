@@ -1,6 +1,6 @@
 import React from "react";
 import { Character } from "../../../modules/characters/domain/character";
-import { useDarkModeContext } from "src/context/darkMode/DarkModeContext";
+import { useDarkModeContext } from "../../../context/darkMode/DarkModeContext";
 import {
   CharacterCardContainer,
   CharacterImageWrapper,

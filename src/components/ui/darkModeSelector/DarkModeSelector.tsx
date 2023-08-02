@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDarkModeContext } from "src/context/darkMode/DarkModeContext";
+import { useDarkModeContext } from "../../../context/darkMode/DarkModeContext";
 
 import ToggleScreenMode from "../toogleScreenMode/ToggleScreenMode";
 

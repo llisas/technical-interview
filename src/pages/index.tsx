@@ -11,7 +11,7 @@ import PaginationAdapter from "../modules/characters/application/adapters/Pagina
 import paginationService from "../modules/characters/application/services/paginationService";
 import searchService from "../modules/characters/application/services/searchService";
 import { getServerSideProps } from "./serverSideProps/getAllCharactersServerSite";
-import { orderCharacters } from "src/modules/characters/application/services/characterOrder";
+import { orderCharacters } from "../modules/characters/application/services/characterOrder";
 
 
 const Home = ({ response }: { response: Response }) => {

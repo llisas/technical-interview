@@ -4,10 +4,9 @@ import type { AppProps } from "next/app";
 import Modal from "react-modal";
 import DarkModeSelector from "../components/ui/darkModeSelector/DarkModeSelector";
 import TranslationSelector from "@/components/ui/translationSelector/TranslationSelector";
-import { DarkModeProvider } from "src/context/darkMode/DarkModeContext";
+import { DarkModeProvider } from "../context/darkMode/DarkModeContext";
 
 Modal.setAppElement("#__next");
-
 export default function rickyMortyApp({ Component, pageProps }: AppProps) {
   return (
     <>

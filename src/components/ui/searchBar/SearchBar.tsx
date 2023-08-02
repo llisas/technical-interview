@@ -5,7 +5,7 @@ import {
   SearchInput,
 } from "./SearchBar.styles";
 import useSearchBar from "../../../modules/characters/application/useCase/customHooks/useSearchBar";
-import { useDarkModeContext } from "src/context/darkMode/DarkModeContext";
+import { useDarkModeContext } from "../../../context/darkMode/DarkModeContext";
 import i18n from "../../../../i18n";
 import { useTranslation } from "react-i18next"; 
 

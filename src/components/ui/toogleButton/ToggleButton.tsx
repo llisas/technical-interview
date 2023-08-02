@@ -1,6 +1,6 @@
 import React from "react";
 import { ToggleButtonStyled, ToggleButtonLabel} from "./ToogleButton.styles";
-import { useDarkModeContext } from "src/context/darkMode/DarkModeContext";
+import { useDarkModeContext } from "../../../context/darkMode/DarkModeContext";
 interface ToggleButtonProps {
   name: string;
   active: boolean;
